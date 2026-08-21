@@ -1,6 +1,6 @@
 cask "desktop-commander" do
   version "1.0.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "b82a386db22a84eb59d9b6d7940268ed7d74ab927e858cb35ad5de8b904ed901"
 
   url "https://github.com/fballiano/desktop-commander/releases/download/v#{version}/desktop-commander-#{version}.dmg"
   name "desktop-commander"
