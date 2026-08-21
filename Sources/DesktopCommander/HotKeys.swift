@@ -1,0 +1,39 @@
+import KeyboardShortcuts
+
+/// The global hot keys.
+///
+/// `KeyboardShortcuts` stores the chosen combinations in `UserDefaults` and turns
+/// them off while the user records a new one.
+extension KeyboardShortcuts.Name {
+    // The switches.
+    static let keepAwake = Self("keepAwake")
+    static let desktopWidgets = Self("desktopWidgets")
+    static let desktopIcons = Self("desktopIcons")
+    static let hiddenFiles = Self("hiddenFiles")
+    static let hiddenWindows = Self("hiddenWindows")
+    static let keyboardLock = Self("keyboardLock")
+    static let screenSaver = Self("screenSaver")
+    static let screenCleaning = Self("screenCleaning")
+
+    // The windows.
+    static let nextScreen = Self("windowNextScreen")
+    static let undoMove = Self("windowUndo")
+
+    /// One name for each slot, built from the name of the case, so a new slot
+    /// gets its hot key without a second list to keep in step.
+    static func slot(_ slot: WindowSlot) -> Self {
+        Self("window.\(slot.rawValue)")
+    }
+
+    /// Every name the Shortcuts tab shows for the switches, in order.
+    static let switchNames: [(name: Self, title: String)] = [
+        (.keepAwake, "Keep awake"),
+        (.desktopWidgets, "Hide the desktop widgets"),
+        (.desktopIcons, "Hide the desktop icons"),
+        (.hiddenFiles, "Show the hidden files"),
+        (.hiddenWindows, "Hide the windows"),
+        (.keyboardLock, "Keyboard lock"),
+        (.screenSaver, "Screen saver"),
+        (.screenCleaning, "Clean the screen"),
+    ]
+}

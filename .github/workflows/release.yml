@@ -1,0 +1,140 @@
+name: Release
+
+# Push a tag to publish a release:
+#
+#   git tag -a v1.0.0 -m "v1.0.0" && git push origin v1.0.0
+#
+# The workflow builds the universal Release app, packs it into a DMG, attaches
+# the DMG to a new GitHub release and updates the Homebrew cask on the default
+# branch.
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to build, without the leading v, for example 1.0.0"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-26
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -switch /Applications/Xcode.app
+          xcodebuild -version
+          swift --version
+
+      - name: Read the version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            version="${{ inputs.version }}"
+          else
+            version="${GITHUB_REF_NAME#v}"
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+          echo "Version $version"
+
+      - name: Run the tests
+        run: make test
+
+      - name: Build the disk image
+        run: |
+          make dmg VERSION="${{ steps.version.outputs.version }}" \
+                   BUILD_NUMBER="${{ github.run_number }}"
+
+      - name: Check the disk image
+        id: dmg
+        run: |
+          set -euo pipefail
+          path=$(ls dist/*.dmg)
+          echo "path=$path" >> "$GITHUB_OUTPUT"
+          echo "sha256=$(shasum -a 256 "$path" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          # The app must be a universal binary and must carry a signature.
+          hdiutil attach "$path" -nobrowse -mountpoint /tmp/desktop-commander-dmg
+          lipo -archs /tmp/desktop-commander-dmg/desktop-commander.app/Contents/MacOS/desktop-commander
+          codesign --verify --verbose /tmp/desktop-commander-dmg/desktop-commander.app
+          hdiutil detach /tmp/desktop-commander-dmg
+
+      - name: Write the release notes
+        run: |
+          cat > /tmp/notes.md <<'NOTES'
+          ## Install
+
+          1. Download the DMG below.
+          2. Open it and drag **desktop-commander** into **Applications**.
+          3. The first launch shows a warning, because the app is not signed with
+             an Apple Developer ID. Open **System Settings → Privacy & Security**
+             and select **Open Anyway**.
+
+          A terminal does the same thing:
+
+          ```bash
+          xattr -dr com.apple.quarantine /Applications/desktop-commander.app
+          open /Applications/desktop-commander.app
+          ```
+
+          The app has no dock icon. It appears in the menu bar.
+
+          ## Requirements
+
+          macOS 15.0 or later. Apple silicon and Intel (universal binary).
+
+          NOTES
+          printf 'SHA-256 of the DMG: `%s`\n' "${{ steps.dmg.outputs.sha256 }}" >> /tmp/notes.md
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "v${{ steps.version.outputs.version }}" \
+            "${{ steps.dmg.outputs.path }}" \
+            --title "desktop-commander ${{ steps.version.outputs.version }}" \
+            --notes-file /tmp/notes.md \
+            --generate-notes \
+            --target "${{ github.sha }}"
+
+      # This repository is also the Homebrew tap. The cask must point at the
+      # release that the step above published, so this step runs last. The same
+      # commit stores the version, which a local build reads.
+      - name: Update the Homebrew cask and the stored version
+        env:
+          BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          version="${{ steps.version.outputs.version }}"
+          sha256="${{ steps.dmg.outputs.sha256 }}"
+          # A tag build checks out a detached HEAD, so move to the branch first.
+          git fetch --depth 1 origin "$BRANCH"
+          git checkout -B "$BRANCH" "origin/$BRANCH"
+          sed -i '' \
+            -e "s|^  version \".*\"$|  version \"$version\"|" \
+            -e "s|^  sha256 \".*\"$|  sha256 \"$sha256\"|" \
+            Casks/desktop-commander.rb
+          sed -i '' \
+            -e "s|^    MARKETING_VERSION: \".*\"$|    MARKETING_VERSION: \"$version\"|" \
+            project.yml
+          sed -i '' \
+            -e "s|MARKETING_VERSION = .*;|MARKETING_VERSION = $version;|" \
+            DesktopCommander.xcodeproj/project.pbxproj
+          files="Casks/desktop-commander.rb project.yml DesktopCommander.xcodeproj/project.pbxproj"
+          if git diff --quiet -- $files; then
+            echo "The repository already holds version $version."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update the Homebrew cask and the version to $version" -- $files
+          git push origin "HEAD:$BRANCH"

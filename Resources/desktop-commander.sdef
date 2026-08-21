@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="desktop-commander">
+    <suite name="desktop-commander Suite" code="DCMD" description="desktop-commander scripts">
+        <command name="keep awake" code="DCMDkawn" description="Stop the Mac from going to sleep">
+            <cocoa class="KeepAwakeOnCommand"/>
+        </command>
+        <command name="allow sleep" code="DCMDkawf" description="Let the Mac go to sleep again">
+            <cocoa class="KeepAwakeOffCommand"/>
+        </command>
+        <command name="hide desktop icons" code="DCMDdion" description="Hide the icons of the desktop">
+            <cocoa class="HideDesktopIconsCommand"/>
+        </command>
+        <command name="show desktop icons" code="DCMDdiof" description="Show the icons of the desktop">
+            <cocoa class="ShowDesktopIconsCommand"/>
+        </command>
+        <command name="show hidden files" code="DCMDhfon" description="Show the files whose name starts with a point">
+            <cocoa class="ShowHiddenFilesCommand"/>
+        </command>
+        <command name="hide hidden files" code="DCMDhfof" description="Hide the files whose name starts with a point">
+            <cocoa class="HideHiddenFilesCommand"/>
+        </command>
+        <command name="hide windows" code="DCMDhwon" description="Hide the windows of every application">
+            <cocoa class="HideWindowsCommand"/>
+        </command>
+        <command name="show windows" code="DCMDhwof" description="Bring back the windows this application hid">
+            <cocoa class="ShowWindowsCommand"/>
+        </command>
+        <command name="start screen saver" code="DCMDscsv" description="Start the screen saver">
+            <cocoa class="StartScreenSaverCommand"/>
+        </command>
+        <command name="clean screen" code="DCMDclsc" description="Cover every screen with black, so you can wipe it">
+            <cocoa class="CleanScreenCommand"/>
+        </command>
+        <command name="lock keyboard" code="DCMDkbon" description="Stop the keyboard from reaching any application">
+            <cocoa class="LockKeyboardCommand"/>
+        </command>
+        <command name="unlock keyboard" code="DCMDkbof" description="Give the keyboard back">
+            <cocoa class="UnlockKeyboardCommand"/>
+        </command>
+        <command name="arrange window" code="DCMDarrw" description="Put the front window into a place on the screen">
+            <cocoa class="ArrangeWindowCommand"/>
+            <direct-parameter type="text" description="The place, for example leftHalf, rightHalf, maximize, topLeftQuarter or centreThird"/>
+            <result type="boolean" description="True when the window moved"/>
+        </command>
+        <command name="move window to next display" code="DCMDnxds" description="Send the front window to the next display">
+            <cocoa class="NextDisplayCommand"/>
+            <result type="boolean" description="True when the window moved"/>
+        </command>
+        <command name="undo window move" code="DCMDundo" description="Put the last moved window back where it was">
+            <cocoa class="UndoWindowMoveCommand"/>
+            <result type="boolean" description="True when the window moved back"/>
+        </command>
+    </suite>
+</dictionary>
