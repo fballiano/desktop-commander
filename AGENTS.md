@@ -193,6 +193,19 @@ Three rules that must not be lost:
    works. It is the way out that does not need this application to be working.
 3. A timer ends the lock whatever happens.
 
+### No notifications
+
+The application posts none, so it never asks for the notification permission.
+Do not add one. Three of the four it used to post said what the user could
+already see, and the two that carried real information now live somewhere better:
+
+- The keys that end the keyboard lock are in the menu row itself, so the user
+  reads them at the moment they turn the lock on.
+- The missing Accessibility permission is an `NSAlert` with a button that opens
+  the pane. A banner carries no button, and macOS shows its own permission sheet
+  at most once for each launch, so without the alert a second hot key would do
+  nothing at all and look broken.
+
 ### Write a default once
 
 Two settings are written at the first launch and never again:
@@ -210,7 +223,7 @@ test run. `RuntimeEnvironment.isRunningTests` guards the side effects:
 - `DefaultsSwitch.restartFinder` does not end Finder.
 - `KeyboardLock` never creates a tap, and `Accessibility.request()` never asks.
 - `ScreenSaver` and `ScreenCleaning` do nothing.
-- `Notifier` does not ask for notification permission.
+- `Accessibility.showAlert()` shows nothing.
 - `LoginItem` does not call `SMAppService`.
 
 Add the same guard to any new code that touches the system.

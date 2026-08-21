@@ -13,7 +13,6 @@ final class Preferences {
         static let windowGap = "windowGap"
         static let keepAwakeDuration = "keepAwakeDuration"
         static let keyboardLockTimeout = "keyboardLockTimeout"
-        static let showNotifications = "showNotifications"
         static let appliedDefaultLoginItem = "appliedDefaultLoginItem"
         static let appliedDefaultShortcuts = "appliedDefaultShortcuts"
     }
@@ -37,7 +36,6 @@ final class Preferences {
             Key.windowGap: Self.defaultWindowGap,
             Key.keepAwakeDuration: KeepAwake.Duration.forever.rawValue,
             Key.keyboardLockTimeout: Self.defaultKeyboardLockTimeout,
-            Key.showNotifications: true,
             Key.appliedDefaultLoginItem: false,
             Key.appliedDefaultShortcuts: false,
         ])
@@ -47,7 +45,6 @@ final class Preferences {
             rawValue: defaults.string(forKey: Key.keepAwakeDuration) ?? ""
         ) ?? .forever
         storedKeyboardLockTimeout = max(0, defaults.integer(forKey: Key.keyboardLockTimeout))
-        showNotifications = defaults.bool(forKey: Key.showNotifications)
         appliedDefaultLoginItem = defaults.bool(forKey: Key.appliedDefaultLoginItem)
         appliedDefaultShortcuts = defaults.bool(forKey: Key.appliedDefaultShortcuts)
     }
@@ -87,11 +84,6 @@ final class Preferences {
     }
 
     // MARK: - The application
-
-    /// Show a banner after a command of a hot key.
-    var showNotifications: Bool {
-        didSet { defaults.set(showNotifications, forKey: Key.showNotifications) }
-    }
 
     /// `true` after the app has registered the login item once.
     ///

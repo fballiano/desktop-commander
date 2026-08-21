@@ -74,6 +74,7 @@ The application has no dock icon. It appears in the menu bar.
 | macOS | 15.0 or later |
 | Hardware | Apple silicon and Intel (universal binary) |
 | Permissions | Accessibility, for the window commands and the keyboard lock only. Read the next section. |
+| Notifications | None. The application posts no banner, so it never asks. |
 
 ## The Accessibility permission
 
@@ -139,7 +140,8 @@ clear one of the three, it stays cleared.
 The lock is for wiping the keys while you keep watching the screen. It has three
 ways out, because a keyboard that cannot be unlocked is a broken Mac:
 
-1. <kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>U</kbd> ends it.
+1. <kbd>⌃</kbd><kbd>⌥</kbd><kbd>⌘</kbd><kbd>U</kbd> ends it. The menu row names
+   these keys, so you read them at the moment you turn the lock on.
 2. A timer ends it. **Preferences → Switches** sets the length, from 10 seconds
    to 10 minutes.
 3. <kbd>⌘</kbd><kbd>⌥</kbd><kbd>esc</kbd> is **never** swallowed, so Force Quit
@@ -151,7 +153,7 @@ Open **Preferences…** from the menu, or press <kbd>⌘</kbd><kbd>,</kbd>.
 
 | Tab | What is in it |
 | --- | --- |
-| General | Start at login (on by default), notifications, the length of Keep awake. |
+| General | Start at login (on by default) and the length of Keep awake. |
 | Windows | The gap between a window and the edge of the screen, and the state of the Accessibility permission with a button that opens the pane. |
 | Switches | The timer of the keyboard lock. |
 | Shortcuts | A recorder for each of the eight switches and each of the seventeen window commands. |

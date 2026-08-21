@@ -35,7 +35,6 @@ private struct GeneralSettingsView: View {
         Form {
             Section("Startup") {
                 Toggle("Start desktop-commander at login", isOn: $loginItem.isEnabled)
-                Toggle("Show notifications", isOn: $preferences.showNotifications)
 
                 if let error = loginItem.lastError {
                     Text(error)

@@ -49,7 +49,10 @@ struct MenuContent: View {
             set: { model.setHiddenWindows($0) }
         ))
 
-        Toggle("Keyboard lock", isOn: Binding(
+        // The lock swallows every key, so the way out has to be on screen
+        // before the user turns it on. The application posts no notification,
+        // so the row itself carries the hint.
+        Toggle(keyboardLockTitle, isOn: Binding(
             get: { model.keyboardLock.isOn },
             set: { model.setKeyboardLock($0) }
         ))
@@ -92,6 +95,11 @@ struct MenuContent: View {
 
         Button("Quit desktop-commander") { model.quit() }
             .keyboardShortcut("q", modifiers: .command)
+    }
+
+    /// The row of the lock names the keys that end it.
+    private var keyboardLockTitle: String {
+        "Keyboard lock — \u{2303}\u{2325}\u{2318}U to unlock"
     }
 
     /// The first row says what the switch does and for how long, as OneSwitch

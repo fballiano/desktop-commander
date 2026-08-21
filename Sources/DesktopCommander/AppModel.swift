@@ -28,7 +28,6 @@ final class AppModel {
     // The windows.
     @ObservationIgnored let windows: WindowMover
 
-    @ObservationIgnored private let notifier = Notifier()
     @ObservationIgnored private let settingsWindow = SettingsWindowController()
     @ObservationIgnored private var didBootstrap = false
 
@@ -59,19 +58,14 @@ final class AppModel {
 
     // MARK: - Launch
 
-    /// Wires the hot keys, the notifications and the login item.
+    /// Wires the hot keys and the login item.
     func bootstrap() {
         guard !didBootstrap, !RuntimeEnvironment.isRunningTests else { return }
         didBootstrap = true
 
         applyDefaultLoginItem()
         applyDefaultShortcuts()
-        notifier.prepare()
         registerHotKeys()
-
-        keyboardLock.onUnlock = { [weak self] in
-            self?.notify("The keyboard is unlocked")
-        }
     }
 
     /// Starts the app at login, once.
@@ -167,7 +161,6 @@ final class AppModel {
 
     func setKeepAwake(_ on: Bool) {
         keepAwake.set(on, duration: preferences.keepAwakeDuration)
-        notify(on ? "The Mac stays awake" : "The Mac can sleep again")
     }
 
     func toggleKeepAwake() {
@@ -201,10 +194,6 @@ final class AppModel {
     func setKeyboardLock(_ on: Bool) {
         keyboardLock.timeout = TimeInterval(preferences.keyboardLockTimeout)
         keyboardLock.set(on)
-
-        if on, keyboardLock.isOn {
-            notify(KeyboardLock.unlockHint)
-        }
     }
 
     func toggleKeyboardLock() {
@@ -279,8 +268,11 @@ final class AppModel {
     private func requestAccessibility() -> Bool {
         guard !Accessibility.isTrusted else { return true }
 
+        // macOS shows its own sheet at most once for each launch, so a second
+        // hot key after a refusal would do nothing at all and look broken. This
+        // alert always appears, and it carries the button that opens the pane.
         Accessibility.request()
-        notify("desktop-commander needs the Accessibility permission to move a window.")
+        Accessibility.showAlert()
 
         return false
     }
@@ -298,9 +290,5 @@ final class AppModel {
 
     func quit() {
         NSApp.terminate(nil)
-    }
-
-    private func notify(_ message: String) {
-        notifier.post(message, enabled: preferences.showNotifications)
     }
 }

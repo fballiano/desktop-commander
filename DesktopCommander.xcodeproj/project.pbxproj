@@ -17,7 +17,6 @@
 		31D1E265E6149B76DF88702B /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DB280662116905B735AE8 /* ScreenGeometry.swift */; };
 		34C72A90E8B2190D31FA25FB /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9EEAE7095F40AB1ED805EF /* MenuContent.swift */; };
 		35292E804BC7C8559AE995C2 /* KeepAwakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E312D685510B308A27E5F925 /* KeepAwakeTests.swift */; };
-		3D215F1F3FA985D15B96D496 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3403BF39E0528CAD99F534 /* Notifier.swift */; };
 		3EEA3AC7CD4C19DB155E227D /* ScreenCleaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2AD0494FB926E1C128271 /* ScreenCleaning.swift */; };
 		5FE8F1812A51B73FA4204FE4 /* FakeFocusedWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542D3EBC81892F7DF1481BA /* FakeFocusedWindow.swift */; };
 		61E799FE45391FA8334984E5 /* HiddenWindowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF75BBD996BAB6692B694F /* HiddenWindowsTests.swift */; };
@@ -96,7 +95,6 @@
 		ECB260F3A671D8577347EFB1 /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		F09DB280662116905B735AE8 /* ScreenGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenGeometry.swift; sourceTree = "<group>"; };
 		F3CE93ED3DFEAF073C71598C /* WindowSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSlot.swift; sourceTree = "<group>"; };
-		FB3403BF39E0528CAD99F534 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +140,6 @@
 				26894752526821D63436CB9C /* DesktopCommanderApp.swift */,
 				7086E4B166D9D05C736D4B8E /* HotKeys.swift */,
 				ECB260F3A671D8577347EFB1 /* LoginItem.swift */,
-				FB3403BF39E0528CAD99F534 /* Notifier.swift */,
 				3172360C56ECB5520387C33F /* Preferences.swift */,
 				CF0E0B006F180C35582AC1F5 /* RuntimeEnvironment.swift */,
 			);
@@ -362,7 +359,6 @@
 				B2A07ACDBC8EDAF361BC8FEB /* LoginItem.swift in Sources */,
 				160FBB572FABBED6302093BF /* MenuBarLabel.swift in Sources */,
 				34C72A90E8B2190D31FA25FB /* MenuContent.swift in Sources */,
-				3D215F1F3FA985D15B96D496 /* Notifier.swift in Sources */,
 				E98BEBC552C9BDDC9D623BD5 /* Preferences.swift in Sources */,
 				8E57CDB1FA6E57359A02BA7E /* RuntimeEnvironment.swift in Sources */,
 				3EEA3AC7CD4C19DB155E227D /* ScreenCleaning.swift in Sources */,

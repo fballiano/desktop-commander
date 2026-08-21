@@ -32,6 +32,35 @@ enum Accessibility {
         return AXIsProcessTrustedWithOptions(options)
     }
 
+    /// Says what is missing and offers the way to fix it.
+    ///
+    /// This is not a notification. The application posts none, so it never asks
+    /// for the notification permission. An alert is also better here: a banner
+    /// carries no button, and the one thing the user needs is the button that
+    /// opens the pane.
+    static func showAlert() {
+        guard !RuntimeEnvironment.isRunningTests else { return }
+
+        let alert = NSAlert()
+        alert.messageText = "desktop-commander needs the Accessibility permission"
+        alert.informativeText = """
+        Every window command needs it, and so does the keyboard lock. Nothing \
+        else does.
+
+        Open System Settings, then Privacy & Security, then Accessibility, and \
+        switch desktop-commander on.
+        """
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Open Settings…")
+        alert.addButton(withTitle: "Not now")
+
+        NSApp.activate()
+
+        if alert.runModal() == .alertFirstButtonReturn {
+            openSettings()
+        }
+    }
+
     /// Opens System Settings at Privacy & Security → Accessibility.
     static func openSettings() {
         let url = URL(

@@ -19,7 +19,6 @@ struct PreferencesTests {
         #expect(preferences.windowGap == Preferences.defaultWindowGap)
         #expect(preferences.keepAwakeDuration == .forever)
         #expect(preferences.keyboardLockTimeout == Preferences.defaultKeyboardLockTimeout)
-        #expect(preferences.showNotifications)
 
         // Both defaults are applied at the first launch, so both flags start
         // false and become true once.
@@ -34,7 +33,6 @@ struct PreferencesTests {
 
         preferences.windowGap = 12
         preferences.keepAwakeDuration = .twoHours
-        preferences.showNotifications = false
 
         #expect(defaults.integer(forKey: Preferences.Key.windowGap) == 12)
 
@@ -42,7 +40,6 @@ struct PreferencesTests {
         let reloaded = Preferences(defaults: defaults)
         #expect(reloaded.windowGap == 12)
         #expect(reloaded.keepAwakeDuration == .twoHours)
-        #expect(!reloaded.showNotifications)
     }
 
     @Test("The gap has two ends")
