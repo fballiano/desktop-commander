@@ -93,6 +93,19 @@ command, so if you only want the switches you never see a permission sheet.
 >
 > There is no way around this without an Apple Developer ID.
 
+If a window command keeps asking for a permission the list already shows as
+granted, two copies of the application are installed. Every copy carries the same
+bundle identifier, so macOS shows one row, and the row belongs to one of them.
+Reset it and start one copy:
+
+```bash
+pkill -f desktop-commander
+tccutil reset Accessibility com.fabrizioballiano.desktop-commander
+open -n /Applications/desktop-commander.app
+```
+
+Then use a window command once and grant the permission again.
+
 ## The menu
 
 | Item | What it does | Permission |

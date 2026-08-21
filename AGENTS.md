@@ -57,6 +57,25 @@ in System Settings and add it again. There is no way around this without an Appl
 Developer ID. Say so in the README and in the Settings window; do not pretend it
 does not happen.
 
+**Two copies with one bundle identifier is the trap.** Every copy of this
+application carries `com.fabrizioballiano.desktop-commander`, so:
+
+- `open /Applications/desktop-commander.app` does **not** launch that copy while
+  another one is running. macOS only brings the running one forward. Use
+  `open -n`, which is what `make run` does.
+- `make test` used to leave the Debug test host running for the rest of the day.
+  A user then clicked the menu bar icon of the Debug build, granted the
+  permission to that binary, and the installed copy stayed untrusted. `make test`
+  now stops the copies under `./build`, and only those.
+- `brew install --cask` refuses to move its app into `/Applications` when
+  something is already there. It leaves the app in the Caskroom and says so in a
+  line that is easy to miss. `make install` and the cask must never both own that
+  path.
+
+To put it right: `pkill -f desktop-commander`, then
+`tccutil reset Accessibility com.fabrizioballiano.desktop-commander`, then launch
+one copy and grant the permission again.
+
 ## Icons
 
 The application icon and the menu bar icon are the same Tabler `adjustments`

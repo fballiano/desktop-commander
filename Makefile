@@ -54,15 +54,27 @@ debug:
 # Serial testing: the tests load into the real app, so a parallel run would
 # launch one copy of the app per test worker. The results are printed, so this
 # target does not use -quiet.
+#
+# The test host is the Debug app, and it stays running after the tests. That
+# matters here more than in an ordinary project: the Debug app and the installed
+# app share a bundle identifier, so `open` on the installed one only activates
+# the Debug copy that is already there. The Accessibility permission belongs to
+# one binary, so the user then grants it to the wrong copy.
+#
+# The last line therefore stops the copies under ./build only. It leaves
+# /Applications alone, so a test run never takes away the permission the user
+# granted to the installed app.
 test:
 	@set -o pipefail; $(XCODEBUILD) -configuration Debug \
 		-destination 'platform=macOS,arch=arm64' \
 		-parallel-testing-enabled NO test \
 		| grep -vE 'linkd.autoShortcut|Process Instance Registry|synchronousRemoteObjectProxy'
+	@pkill -f '$(BUILD_DIR)/Build/Products/.*/$(APP)/Contents/MacOS/' || true
 
 run: build
 	@pkill -f '/desktop-commander.app/Contents/MacOS/desktop-commander' || true
-	@open $(APP_RELEASE)
+	@sleep 1
+	@open -n $(APP_RELEASE)
 
 install: build
 	@pkill -f '/desktop-commander.app/Contents/MacOS/desktop-commander' || true
