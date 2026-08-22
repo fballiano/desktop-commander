@@ -38,12 +38,12 @@ final class KeepAwake {
 
         var title: String {
             switch self {
-            case .forever: "No end"
-            case .fifteenMinutes: "15 minutes"
-            case .thirtyMinutes: "30 minutes"
-            case .oneHour: "1 hour"
-            case .twoHours: "2 hours"
-            case .fiveHours: "5 hours"
+            case .forever: String(localized: "No end")
+            case .fifteenMinutes: String(localized: "15 minutes")
+            case .thirtyMinutes: String(localized: "30 minutes")
+            case .oneHour: String(localized: "1 hour")
+            case .twoHours: String(localized: "2 hours")
+            case .fiveHours: String(localized: "5 hours")
             }
         }
     }
@@ -94,7 +94,9 @@ final class KeepAwake {
         // A second call must not take a second assertion. It only changes the
         // length, which means the old timer goes and a new one starts.
         if assertion == nil {
-            guard let identifier = take("desktop-commander keeps this Mac awake") else { return }
+            let reason = String(localized: "desktop-commander keeps this Mac awake")
+
+            guard let identifier = take(reason) else { return }
             assertion = identifier
         }
 

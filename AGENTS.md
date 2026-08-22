@@ -130,6 +130,48 @@ Composer colours it per appearance.
 `project.yml` needs `options.fileTypes.icon.file: true`. Without it XcodeGen adds
 the files inside the document one by one and the icon never reaches `actool`.
 
+## The languages
+
+`Resources/Localizable.xcstrings` is a String Catalog. It holds every string of
+the interface in six languages: English, which is the source, then French,
+German, Italian, Portuguese (Brazil) and Spanish. The build turns it into one
+`Localizable.strings` for each language inside the application.
+
+The key is the English text, so a string that needs no explanation reads as
+itself in the code. Five long paragraphs and one alert message carry a key of
+their own instead, such as `settings.windows.permissionFooter`, because a key of
+two hundred words is not a key.
+
+Three rules:
+
+- A SwiftUI `Text("…")`, `Toggle("…")`, `Section("…")` or `Label("…")` with a
+  literal is translated by SwiftUI itself. Nothing else is. Every other string
+  needs `String(localized:)`: an `NSMenuItem` title, an `NSAlert`, a window
+  title, a string a type gives back.
+- A `String` that is already translated must never go back through
+  `LocalizedStringKey`. `Text(duration.title)` takes the `String` overload and
+  shows the text as it is, which is right. `Text("\(duration.title)")` would look
+  the translated text up again and find nothing.
+- A list of titles is a computed property, never a stored one. A stored property
+  reads the language once and keeps it. `WindowSlot.groups` and
+  `KeyboardShortcuts.Name.switchNames` were stored before and are not now.
+
+`LocalizationTests` reads the built application, not the catalogue. It checks
+that the six languages are there, that each one holds every key, and that no
+translation is still the English text. A new string that reaches only the
+English side fails the third test. A word that is the same in every language,
+such as "Layout", goes into `sameInEveryLanguage`.
+
+The catalogue is written by hand. `SWIFT_EMIT_LOC_STRINGS` is off, so no build
+adds an entry to it and no build changes the file.
+
+Two things stay in English, and both on purpose:
+
+- `Resources/desktop-commander.sdef`. The words of an AppleScript command are
+  the command, so `arrange window "leftHalf"` must read the same on every Mac.
+- The Siri phrases of `DesktopCommanderShortcuts`. A phrase holds
+  `\(.applicationName)`, and the name of the application does not change.
+
 ## Releases
 
 `.github/workflows/release.yml` publishes a release. A tag that starts with `v`

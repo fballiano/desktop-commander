@@ -32,12 +32,14 @@
 		9FB9B6858A660EEF5E5B92D0 /* WindowMover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B867776FC4FA3D50984F3B /* WindowMover.swift */; };
 		A20E0E4ADE04EADA5D926303 /* WindowSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CE93ED3DFEAF073C71598C /* WindowSlot.swift */; };
 		A31AEA156D7E73F3AD2C99D0 /* CommanderGlyph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60BA02D9818F3B8264B4023F /* CommanderGlyph.swift */; };
+		A5A63F69E06759ED564F4799 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7BE6B38056548A2F000898A2 /* Localizable.xcstrings */; };
 		AED03D16E73521C7327D9A79 /* ScreenSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA32FCB3E2F870DC1BFFFBE /* ScreenSaver.swift */; };
 		B0FF9E76FD7AC00B9C6F49B1 /* ScreenGeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E1B25ED80B60C70A9A07A0C /* ScreenGeometryTests.swift */; };
 		B2A07ACDBC8EDAF361BC8FEB /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB260F3A671D8577347EFB1 /* LoginItem.swift */; };
 		B795B559BEAEE7FF9D83EC6A /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34611C9766032F32B273362F /* PreferencesTests.swift */; };
 		BF0E60752047CC519ACC52C7 /* DefaultsSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A49D2B5E7C1F949CED462 /* DefaultsSwitch.swift */; };
 		D079185583EC81E20FBA11AD /* HiddenWindows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548DF903353CC9A6A17B9182 /* HiddenWindows.swift */; };
+		DA3BA21893061D7B4C06076C /* LocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD5B641ADD1B34107565348 /* LocalizationTests.swift */; };
 		DC865980EBDC4E065F65D3F6 /* ScriptCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DA396B18AC1A02B0CF077B /* ScriptCommands.swift */; };
 		E2A9E68794754C41D88A26BC /* WindowMoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB7E2AED554668F4AA2467 /* WindowMoverTests.swift */; };
 		E98BEBC552C9BDDC9D623BD5 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3172360C56ECB5520387C33F /* Preferences.swift */; };
@@ -71,11 +73,13 @@
 		4E1B25ED80B60C70A9A07A0C /* ScreenGeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenGeometryTests.swift; sourceTree = "<group>"; };
 		548DF903353CC9A6A17B9182 /* HiddenWindows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenWindows.swift; sourceTree = "<group>"; };
 		5542D3EBC81892F7DF1481BA /* FakeFocusedWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFocusedWindow.swift; sourceTree = "<group>"; };
+		5AD5B641ADD1B34107565348 /* LocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationTests.swift; sourceTree = "<group>"; };
 		60BA02D9818F3B8264B4023F /* CommanderGlyph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderGlyph.swift; sourceTree = "<group>"; };
 		686852343241D675F9339EEE /* desktop-commander.sdef */ = {isa = PBXFileReference; path = "desktop-commander.sdef"; sourceTree = "<group>"; };
 		6E5C6D3F22EC5D9DB717AF17 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		7086E4B166D9D05C736D4B8E /* HotKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
 		71F5CB29790478647D340EE3 /* KeepAwake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwake.swift; sourceTree = "<group>"; };
+		7BE6B38056548A2F000898A2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8B4DDCEE8D4C5BD9D0D96968 /* KeyboardLockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLockTests.swift; sourceTree = "<group>"; };
 		8FF57CE3574165B0A4377B84 /* Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accessibility.swift; sourceTree = "<group>"; };
 		97EA1C49B0A67EBFB3FBA5A0 /* DesktopCommanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DesktopCommanderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +118,7 @@
 			children = (
 				6E5C6D3F22EC5D9DB717AF17 /* AppIcon.icon */,
 				686852343241D675F9339EEE /* desktop-commander.sdef */,
+				7BE6B38056548A2F000898A2 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				1DCF75BBD996BAB6692B694F /* HiddenWindowsTests.swift */,
 				E312D685510B308A27E5F925 /* KeepAwakeTests.swift */,
 				8B4DDCEE8D4C5BD9D0D96968 /* KeyboardLockTests.swift */,
+				5AD5B641ADD1B34107565348 /* LocalizationTests.swift */,
 				34611C9766032F32B273362F /* PreferencesTests.swift */,
 				4E1B25ED80B60C70A9A07A0C /* ScreenGeometryTests.swift */,
 				48EB7E2AED554668F4AA2467 /* WindowMoverTests.swift */,
@@ -294,7 +300,12 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				de,
 				en,
+				es,
+				fr,
+				it,
+				"pt-BR",
 			);
 			mainGroup = 05B77CA13CF0CBFACED7E6EA;
 			minimizedProjectReferenceProxies = 1;
@@ -318,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2FB2D76632EA7D0DEF7285EA /* AppIcon.icon in Resources */,
+				A5A63F69E06759ED564F4799 /* Localizable.xcstrings in Resources */,
 				0FB0DBD41E7AFAF890A9D6A9 /* desktop-commander.sdef in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,6 +347,7 @@
 				61E799FE45391FA8334984E5 /* HiddenWindowsTests.swift in Sources */,
 				35292E804BC7C8559AE995C2 /* KeepAwakeTests.swift in Sources */,
 				9B9E2FEEA3717B78EBD6957A /* KeyboardLockTests.swift in Sources */,
+				DA3BA21893061D7B4C06076C /* LocalizationTests.swift in Sources */,
 				B795B559BEAEE7FF9D83EC6A /* PreferencesTests.swift in Sources */,
 				B0FF9E76FD7AC00B9C6F49B1 /* ScreenGeometryTests.swift in Sources */,
 				E2A9E68794754C41D88A26BC /* WindowMoverTests.swift in Sources */,

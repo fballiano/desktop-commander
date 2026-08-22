@@ -121,7 +121,7 @@ final class ArrangeWindowCommand: NSScriptCommand {
 
         guard let raw, let slot = WindowSlot(rawValue: raw) else {
             scriptErrorNumber = NSArgumentsWrongScriptError
-            scriptErrorString = "Unknown place. Use one of: "
+            scriptErrorString = String(localized: "Unknown place. Use one of: ")
                 + WindowSlot.allCases.map(\.rawValue).joined(separator: ", ")
             return false
         }

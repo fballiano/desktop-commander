@@ -42,17 +42,11 @@ enum Accessibility {
         guard !RuntimeEnvironment.isRunningTests else { return }
 
         let alert = NSAlert()
-        alert.messageText = "desktop-commander needs the Accessibility permission"
-        alert.informativeText = """
-        Every window command needs it, and so does the keyboard lock. Nothing \
-        else does.
-
-        Open System Settings, then Privacy & Security, then Accessibility, and \
-        switch desktop-commander on.
-        """
+        alert.messageText = String(localized: "desktop-commander needs the Accessibility permission")
+        alert.informativeText = String(localized: "accessibility.alert.message")
         alert.alertStyle = .warning
-        alert.addButton(withTitle: "Open Settings…")
-        alert.addButton(withTitle: "Not now")
+        alert.addButton(withTitle: String(localized: "Open Settings…"))
+        alert.addButton(withTitle: String(localized: "Not now"))
 
         NSApp.activate()
 

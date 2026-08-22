@@ -65,7 +65,9 @@ final class KeyboardLock {
         guard !isOn, !RuntimeEnvironment.isRunningTests else { return }
 
         guard Accessibility.request() else {
-            lastError = "desktop-commander needs the Accessibility permission to lock the keyboard."
+            lastError = String(
+                localized: "desktop-commander needs the Accessibility permission to lock the keyboard."
+            )
             return
         }
 
@@ -81,7 +83,9 @@ final class KeyboardLock {
             callback: KeyboardLock.tapCallback,
             userInfo: Unmanaged.passUnretained(self).toOpaque()
         ) else {
-            lastError = "macOS refused the keyboard tap. Check the Accessibility permission."
+            lastError = String(
+                localized: "macOS refused the keyboard tap. Check the Accessibility permission."
+            )
             return
         }
 
@@ -201,6 +205,6 @@ final class KeyboardLock {
 
     /// The text that tells the user how to get the keyboard back.
     nonisolated static var unlockHint: String {
-        "Press Control, Option, Command and U together to unlock the keyboard."
+        String(localized: "Press Control, Option, Command and U together to unlock the keyboard.")
     }
 }

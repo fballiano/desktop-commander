@@ -34,6 +34,7 @@
 <tr><td><b>Scriptable</b></td><td>AppleScript, Shortcuts and Spotlight drive the same commands.</td></tr>
 <tr><td><b>Visible state</b></td><td>The menu bar icon fills while any switch is on.</td></tr>
 <tr><td><b>Light and dark</b></td><td>The icon follows the system, in the menu bar and in the Finder.</td></tr>
+<tr><td><b>Six languages</b></td><td>English, French, German, Italian, Portuguese (Brazil) and Spanish. It follows the language of the Mac.</td></tr>
 </table>
 
 ## Install
@@ -173,6 +174,15 @@ Open **Preferences…** from the menu, or press <kbd>⌘</kbd><kbd>,</kbd>.
 
 The gap sits once at each edge of the screen and once between two windows that
 meet, so two windows side by side leave exactly one gap between them.
+
+## The language
+
+The application speaks English, French, German, Italian, Portuguese (Brazil)
+and Spanish. It follows the language of the Mac, and it needs no setting of its
+own. A Mac in another language gets English.
+
+To read the application in one language only, set it in System Settings, then
+General, then Language & Region, then Applications.
 
 ## Automation
 

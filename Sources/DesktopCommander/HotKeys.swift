@@ -1,3 +1,4 @@
+import Foundation
 import KeyboardShortcuts
 
 /// The global hot keys.
@@ -26,14 +27,19 @@ extension KeyboardShortcuts.Name {
     }
 
     /// Every name the Shortcuts tab shows for the switches, in order.
-    static let switchNames: [(name: Self, title: String)] = [
-        (.keepAwake, "Keep awake"),
-        (.desktopWidgets, "Hide the desktop widgets"),
-        (.desktopIcons, "Hide the desktop icons"),
-        (.hiddenFiles, "Show the hidden files"),
-        (.hiddenWindows, "Hide the windows"),
-        (.keyboardLock, "Keyboard lock"),
-        (.screenSaver, "Screen saver"),
-        (.screenCleaning, "Clean the screen"),
-    ]
+    ///
+    /// This is computed, not stored, because the titles are translated. A stored
+    /// property would read the language once and keep it.
+    static var switchNames: [(name: Self, title: String)] {
+        [
+            (.keepAwake, String(localized: "Keep awake")),
+            (.desktopWidgets, String(localized: "Hide the desktop widgets")),
+            (.desktopIcons, String(localized: "Hide the desktop icons")),
+            (.hiddenFiles, String(localized: "Show the hidden files")),
+            (.hiddenWindows, String(localized: "Hide the windows")),
+            (.keyboardLock, String(localized: "Keyboard lock")),
+            (.screenSaver, String(localized: "Screen saver")),
+            (.screenCleaning, String(localized: "Clean the screen")),
+        ]
+    }
 }

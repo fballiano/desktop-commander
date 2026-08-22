@@ -71,19 +71,19 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
         keepAwake.submenu = keepAwakeMenu()
         keepAwakeItem = keepAwake
 
-        add("Hide the desktop widgets", to: menu, state: model.desktopWidgets.isOn) { [model] in
+        add(String(localized: "Hide the desktop widgets"), to: menu, state: model.desktopWidgets.isOn) { [model] in
             model.setDesktopWidgets(!model.desktopWidgets.isOn)
         }
 
-        add("Hide the desktop icons", to: menu, state: model.desktopIcons.isOn) { [model] in
+        add(String(localized: "Hide the desktop icons"), to: menu, state: model.desktopIcons.isOn) { [model] in
             model.setDesktopIcons(!model.desktopIcons.isOn)
         }
 
-        add("Show the hidden files", to: menu, state: model.hiddenFiles.isOn) { [model] in
+        add(String(localized: "Show the hidden files"), to: menu, state: model.hiddenFiles.isOn) { [model] in
             model.setHiddenFiles(!model.hiddenFiles.isOn)
         }
 
-        add("Hide the windows", to: menu, state: model.hiddenWindows.isOn) { [model] in
+        add(String(localized: "Hide the windows"), to: menu, state: model.hiddenWindows.isOn) { [model] in
             model.setHiddenWindows(!model.hiddenWindows.isOn)
         }
 
@@ -100,21 +100,21 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
 
         menu.addItem(.separator())
 
-        add("Screen saver", to: menu) { [model] in model.startScreenSaver() }
-        add("Clean the screen", to: menu) { [model] in model.toggleScreenCleaning() }
+        add(String(localized: "Screen saver"), to: menu) { [model] in model.startScreenSaver() }
+        add(String(localized: "Clean the screen"), to: menu) { [model] in model.toggleScreenCleaning() }
 
         menu.addItem(.separator())
 
-        add("Windows", to: menu).submenu = windowsMenu()
+        add(String(localized: "Windows"), to: menu).submenu = windowsMenu()
 
         menu.addItem(.separator())
 
-        add("Preferences…", to: menu, key: ",") { [model] in model.showSettings() }
-        add("About desktop-commander", to: menu) { [model] in model.showAbout() }
+        add(String(localized: "Preferences…"), to: menu, key: ",") { [model] in model.showSettings() }
+        add(String(localized: "About desktop-commander"), to: menu) { [model] in model.showAbout() }
 
         menu.addItem(.separator())
 
-        add("Quit desktop-commander", to: menu, key: "q") { [model] in model.quit() }
+        add(String(localized: "Quit desktop-commander"), to: menu, key: "q") { [model] in model.quit() }
     }
 
     /// The lengths of the keep awake switch.
@@ -126,7 +126,7 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
         let menu = NSMenu()
         menu.autoenablesItems = false
 
-        add("Off", to: menu, state: !model.keepAwake.isOn) { [model] in
+        add(String(localized: "Off"), to: menu, state: !model.keepAwake.isOn) { [model] in
             model.setKeepAwake(false)
         }
 
@@ -158,8 +158,8 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
 
         menu.addItem(.separator())
 
-        add("Move to the next display", to: menu) { [model] in model.moveToNextScreen() }
-        add("Undo the last move", to: menu, enabled: model.canUndoMove) { [model] in
+        add(String(localized: "Move to the next display"), to: menu) { [model] in model.moveToNextScreen() }
+        add(String(localized: "Undo the last move"), to: menu, enabled: model.canUndoMove) { [model] in
             model.undoMove()
         }
 
@@ -235,19 +235,28 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
     // MARK: - The titles
 
     /// The row of the lock names the keys that end it.
+    ///
+    /// The keys are symbols, so they stay the same in every language. Only the
+    /// words around them change.
     private var keyboardLockTitle: String {
-        "Keyboard lock (\u{2303}\u{2325}\u{2318}U to unlock)"
+        let keys = "\u{2303}\u{2325}\u{2318}U"
+
+        return String(localized: "Keyboard lock (\(keys) to unlock)")
     }
 
     /// The row says how much time is left, or "forever" when the switch has no
     /// end. It says nothing while the switch is off, because the checkmark
     /// already gives the state.
     private var keepAwakeTitle: String {
-        guard model.keepAwake.isOn else { return "Keep awake" }
+        guard model.keepAwake.isOn else { return String(localized: "Keep awake") }
 
-        guard let endsAt = model.keepAwake.endsAt else { return "Keep awake (forever)" }
+        guard let endsAt = model.keepAwake.endsAt else {
+            return String(localized: "Keep awake (forever)")
+        }
 
-        return "Keep awake (\(Self.countdown(to: endsAt)))"
+        let left = Self.countdown(to: endsAt)
+
+        return String(localized: "Keep awake (\(left))")
     }
 
     /// The time left, as h:mm:ss, or as m:ss under one hour. The menu is built

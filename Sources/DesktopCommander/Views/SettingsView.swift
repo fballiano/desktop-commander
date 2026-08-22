@@ -55,13 +55,11 @@ private struct GeneralSettingsView: View {
             } header: {
                 Text("Keep awake")
             } footer: {
-                Text("""
-                The application holds a power assertion, the same way macOS does \
-                itself. The assertion dies with the application, so a crash can \
-                never leave a Mac that refuses to sleep.
-                """)
-                .font(.callout)
-                .foregroundStyle(.secondary)
+                // A long text gets its own key, so a translator reads a whole
+                // paragraph and no line of Swift decides where it breaks.
+                Text(String(localized: "settings.general.keepAwakeFooter"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)
@@ -90,12 +88,9 @@ private struct WindowSettingsView: View {
             } header: {
                 Text("Layout")
             } footer: {
-                Text("""
-                The gap sits once at each edge of the screen and once between two \
-                windows that meet.
-                """)
-                .font(.callout)
-                .foregroundStyle(.secondary)
+                Text(String(localized: "settings.windows.layoutFooter"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             }
 
             Section {
@@ -112,17 +107,9 @@ private struct WindowSettingsView: View {
             } header: {
                 Text("Permission")
             } footer: {
-                Text("""
-                Every window command needs this permission, and so does the \
-                keyboard lock. Nothing else does.
-
-                The application is signed ad hoc, so its signature changes with \
-                every update. macOS ties the permission to that signature, so \
-                after an update you must remove desktop-commander from the list \
-                and add it again.
-                """)
-                .font(.callout)
-                .foregroundStyle(.secondary)
+                Text(String(localized: "settings.windows.permissionFooter"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             }
         }
         .formStyle(.grouped)
@@ -153,23 +140,17 @@ private struct SwitchSettingsView: View {
             } header: {
                 Text("Keyboard lock")
             } footer: {
-                Text("""
-                Three ways out. \(KeyboardLock.unlockHint) The timer above ends \
-                the lock whatever happens. Command, Option and Escape together \
-                are never swallowed, so Force Quit always works.
-                """)
-                .font(.callout)
-                .foregroundStyle(.secondary)
+                // The hint is the same sentence the menu row carries, so it is
+                // written once and put into the paragraph here.
+                Text(String(localized: "settings.switches.lockFooter \(KeyboardLock.unlockHint)"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             }
 
             Section {
-                Text("""
-                A change made here also appears in System Settings and in Finder, \
-                because the application writes the settings of the system itself. \
-                It keeps no copy of its own.
-                """)
-                .font(.callout)
-                .foregroundStyle(.secondary)
+                Text(String(localized: "settings.switches.desktopText"))
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
             } header: {
                 Text("The desktop switches")
             }
@@ -185,21 +166,29 @@ private struct ShortcutsSettingsView: View {
         Form {
             Section("Switches") {
                 ForEach(KeyboardShortcuts.Name.switchNames, id: \.name) { entry in
-                    KeyboardShortcuts.Recorder("\(entry.title):", name: entry.name)
+                    KeyboardShortcuts.Recorder(entry.title + ":", name: entry.name)
                 }
             }
 
             ForEach(WindowSlot.groups, id: \.name) { group in
                 Section(group.name) {
                     ForEach(group.slots, id: \.self) { slot in
-                        KeyboardShortcuts.Recorder("\(slot.title):", name: .slot(slot))
+                        KeyboardShortcuts.Recorder(slot.title + ":", name: .slot(slot))
                     }
                 }
             }
 
             Section {
-                KeyboardShortcuts.Recorder("Move to the next display:", name: .nextScreen)
-                KeyboardShortcuts.Recorder("Undo the last move:", name: .undoMove)
+                // The same two titles the Windows submenu carries, so they are
+                // translated once.
+                KeyboardShortcuts.Recorder(
+                    String(localized: "Move to the next display") + ":",
+                    name: .nextScreen
+                )
+                KeyboardShortcuts.Recorder(
+                    String(localized: "Undo the last move") + ":",
+                    name: .undoMove
+                )
             } header: {
                 Text("Displays")
             } footer: {

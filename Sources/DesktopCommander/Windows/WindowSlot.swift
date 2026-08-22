@@ -26,34 +26,45 @@ enum WindowSlot: String, CaseIterable, Sendable {
     case maximize
     case centre
 
-    /// The name in the menu and in the settings.
+    /// The name in the menu and in the settings, in the language of the user.
     var title: String {
         switch self {
-        case .leftHalf: "Left half"
-        case .rightHalf: "Right half"
-        case .topHalf: "Top half"
-        case .bottomHalf: "Bottom half"
-        case .topLeftQuarter: "Top left quarter"
-        case .topRightQuarter: "Top right quarter"
-        case .bottomLeftQuarter: "Bottom left quarter"
-        case .bottomRightQuarter: "Bottom right quarter"
-        case .leftThird: "Left third"
-        case .centreThird: "Centre third"
-        case .rightThird: "Right third"
-        case .firstTwoThirds: "First two thirds"
-        case .lastTwoThirds: "Last two thirds"
-        case .maximize: "Maximize"
-        case .centre: "Centre"
+        case .leftHalf: String(localized: "Left half")
+        case .rightHalf: String(localized: "Right half")
+        case .topHalf: String(localized: "Top half")
+        case .bottomHalf: String(localized: "Bottom half")
+        case .topLeftQuarter: String(localized: "Top left quarter")
+        case .topRightQuarter: String(localized: "Top right quarter")
+        case .bottomLeftQuarter: String(localized: "Bottom left quarter")
+        case .bottomRightQuarter: String(localized: "Bottom right quarter")
+        case .leftThird: String(localized: "Left third")
+        case .centreThird: String(localized: "Centre third")
+        case .rightThird: String(localized: "Right third")
+        case .firstTwoThirds: String(localized: "First two thirds")
+        case .lastTwoThirds: String(localized: "Last two thirds")
+        case .maximize: String(localized: "Maximize")
+        case .centre: String(localized: "Centre")
         }
     }
 
     /// The groups of the Windows submenu, in order.
-    static let groups: [(name: String, slots: [WindowSlot])] = [
-        ("Halves", [.leftHalf, .rightHalf, .topHalf, .bottomHalf]),
-        ("Quarters", [.topLeftQuarter, .topRightQuarter, .bottomLeftQuarter, .bottomRightQuarter]),
-        ("Thirds", [.leftThird, .centreThird, .rightThird, .firstTwoThirds, .lastTwoThirds]),
-        ("Whole screen", [.maximize, .centre]),
-    ]
+    ///
+    /// This is computed, not stored, because the name of a group is translated.
+    /// A stored property would read the language once and keep it.
+    static var groups: [(name: String, slots: [WindowSlot])] {
+        [
+            (String(localized: "Halves"), [.leftHalf, .rightHalf, .topHalf, .bottomHalf]),
+            (
+                String(localized: "Quarters"),
+                [.topLeftQuarter, .topRightQuarter, .bottomLeftQuarter, .bottomRightQuarter]
+            ),
+            (
+                String(localized: "Thirds"),
+                [.leftThird, .centreThird, .rightThird, .firstTwoThirds, .lastTwoThirds]
+            ),
+            (String(localized: "Whole screen"), [.maximize, .centre]),
+        ]
+    }
 
     /// The rectangle for this slot.
     ///
