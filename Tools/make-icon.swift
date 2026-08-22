@@ -30,6 +30,19 @@ import Foundation
 let iconPackage = "Resources/AppIcon.icon"
 let canvas: CGFloat = 1024
 
+/// The stroke, on the 24 x 24 grid of Tabler.
+///
+/// Tabler ships the icon at 2. The menu bar cannot use 2: the drawing is small
+/// there, and a stroke of 2 lands across four Retina pixels with only two of
+/// them whole. `MenuBarLayout` in
+/// `Sources/DesktopCommander/Views/CommanderGlyph.swift` therefore puts a rail
+/// every 5.5 points with a stroke of 1.5, and this is the same proportion on
+/// the grid of 24, where a rail sits every 6. The application icon follows it,
+/// so the two drawings stay the same drawing.
+let strokeWidth: CGFloat = 6 * 1.5 / 5.5
+
+/// The radius of a knob. Tabler makes it equal to the stroke, and that holds.
+
 /// The Tabler "adjustments" outline, in its own 24 x 24 space. The y axis points
 /// down, as in SVG.
 ///
@@ -45,7 +58,7 @@ func tablerAdjustments() -> CGMutablePath {
         (CGPoint(x: 12, y: 16), 4 ... 14, 18 ... 20),
         (CGPoint(x: 18, y: 7), 4 ... 5, 9 ... 20),
     ]
-    let radius: CGFloat = 2
+    let radius: CGFloat = strokeWidth
 
     for (centre, above, below) in sliders {
         path.addEllipse(in: CGRect(
@@ -78,8 +91,8 @@ func glyphOutline() -> CGPath {
         .scaledBy(x: scale, y: scale)
     let placed = tablerAdjustments().copy(using: &transform)!
 
-    // Tabler ships the icon at stroke-width 2, with round caps and joins.
-    return placed.copy(strokingWithWidth: 2 * scale, lineCap: .round, lineJoin: .round, miterLimit: 10)
+    // Round caps and joins, as Tabler ships them.
+    return placed.copy(strokingWithWidth: strokeWidth * scale, lineCap: .round, lineJoin: .round, miterLimit: 10)
 }
 
 func svgPathData(_ path: CGPath) -> String {

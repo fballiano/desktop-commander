@@ -218,16 +218,6 @@ final class AppModel {
         hiddenFiles.refresh()
     }
 
-    /// `true` when at least one switch is on. The menu bar icon says so.
-    var isAnySwitchOn: Bool {
-        keepAwake.isOn
-            || desktopWidgets.isOn
-            || desktopIcons.isOn
-            || hiddenFiles.isOn
-            || hiddenWindows.isOn
-            || keyboardLock.isOn
-    }
-
     // MARK: - The windows
 
     /// Puts the front window into the slot.

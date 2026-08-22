@@ -2,14 +2,11 @@ import SwiftUI
 
 /// What the menu bar shows.
 ///
-/// The sliders, and the sliders filled while any switch is on. The user must see
-/// that something is changed without opening the menu, because a Mac that never
-/// sleeps or a desktop with no icons is easy to forget.
+/// The sliders, always the same outline. See `CommanderGlyph.menuBar` for why
+/// the state of the switches does not change it.
 struct MenuBarLabel: View {
-    let model: AppModel
-
     var body: some View {
-        Image(nsImage: model.isAnySwitchOn ? CommanderGlyph.menuBarActive : CommanderGlyph.menuBar)
+        Image(nsImage: CommanderGlyph.menuBar)
             .renderingMode(.template)
     }
 }

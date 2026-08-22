@@ -79,14 +79,41 @@ one copy and grant the permission again.
 ## Icons
 
 The application icon and the menu bar icon are the same Tabler `adjustments`
-outline at stroke width 2: three sliders. The path exists twice, because the icon
-script runs outside the application and cannot import its code: in
+outline: three sliders. The path exists twice, because the icon script runs
+outside the application and cannot import its code: in
 `Sources/DesktopCommander/Views/CommanderGlyph.swift` and in
 `Tools/make-icon.swift`. Change the two together.
 
-The menu bar has two images. `menuBar` is the plain outline. `menuBarActive`
-fills the three knobs and appears while any switch is on, so a Mac that never
-sleeps or a desktop with no icons is never a surprise.
+The menu bar has one image, and the state of the switches does not change it.
+A second image with the three knobs filled used to say "a switch is on". A knob
+is 9 Retina pixels wide with a hole of 3, so filling it makes a solid disc, and
+a Mac that keeps its widgets hidden then carried three blobs all day beside two
+outline icons. Do not bring it back in that form. The menu says which switch is
+on, and it says which one.
+
+**The menu bar does not use Tabler's own measurements, and it must not.**
+thyme-ng and clipboard-controller draw their Tabler outline into a box of 20
+points and take the stroke of 1.67 points that comes out. That works for them
+and not for this glyph. A stroke of 1.67 points is 3.3 Retina pixels, so where
+the line falls decides everything:
+
+| Glyph | The line sits at grid | In Retina pixels | The stroke covers |
+| --- | --- | --- | --- |
+| The two sides of the clipboard | 5 and 19 | 8.3 and 31.7 | three whole, one grey |
+| The three rails of this glyph | 6, 12 and 18 | 10, 20 and 30 | two whole, two grey |
+
+A rail lands on a whole pixel, which is the worst place for a stroke of 3.3
+pixels: it straddles the middle and spreads both ways. Six thin rails, each one
+two pixels of ink between two grey, and three rings whose hole of two pixels
+washes out into a blob. The icon then reads as thinner and dirtier than the
+icons beside it, and the knobs look filled when they are not.
+
+`MenuBarLayout` in `CommanderGlyph.swift` therefore holds its own measurements,
+in points: a rail every 5.5 points, a stroke of 1.5 points, a knob radius of 1.5
+points. `menuBarOrigin()` then moves the glyph by up to a quarter of a point, so
+each rail sits in the middle of a Retina pixel and fills three whole pixels: the
+weight of the neighbours, with 16% grey ink instead of 37%. Keep this separate
+from the application icon, which is large and needs none of it.
 
 The application icon is an Icon Composer document, `Resources/AppIcon.icon`:
 

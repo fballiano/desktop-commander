@@ -15,7 +15,7 @@ struct DesktopCommanderApp: App {
             MenuContent(model: model)
                 .onAppear { model.refreshSwitches() }
         } label: {
-            MenuBarLabel(model: model)
+            MenuBarLabel()
         }
         .menuBarExtraStyle(.menu)
     }
