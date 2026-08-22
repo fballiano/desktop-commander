@@ -142,11 +142,10 @@ struct KeepAwakeTests {
         #expect(keepAwake.endsAt == nil)
     }
 
-    @Test("Every length has a title and a line under it")
+    @Test("Every length has a title")
     func titles() {
         for duration in KeepAwake.Duration.allCases {
             #expect(!duration.title.isEmpty)
-            #expect(!duration.subtitle.isEmpty)
         }
 
         #expect(KeepAwake.Duration.forever.seconds == nil)

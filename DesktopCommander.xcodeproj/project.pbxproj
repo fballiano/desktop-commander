@@ -10,16 +10,15 @@
 		02821E4F7630F2339D09435C /* HotKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7086E4B166D9D05C736D4B8E /* HotKeys.swift */; };
 		0DBE7C89C60BC8FC366977EE /* Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF57CE3574165B0A4377B84 /* Accessibility.swift */; };
 		0FB0DBD41E7AFAF890A9D6A9 /* desktop-commander.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 686852343241D675F9339EEE /* desktop-commander.sdef */; };
-		160FBB572FABBED6302093BF /* MenuBarLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AE30226CCE7B47DD9C7312 /* MenuBarLabel.swift */; };
 		1A68AB4F67AFA1104B7FAC7B /* KeepAwake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F5CB29790478647D340EE3 /* KeepAwake.swift */; };
 		2FA8799F1A8CF55EF7A11242 /* KeyboardLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE28EB17657B28702A34B6 /* KeyboardLock.swift */; };
 		2FB2D76632EA7D0DEF7285EA /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 6E5C6D3F22EC5D9DB717AF17 /* AppIcon.icon */; };
 		31D1E265E6149B76DF88702B /* ScreenGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09DB280662116905B735AE8 /* ScreenGeometry.swift */; };
-		34C72A90E8B2190D31FA25FB /* MenuContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9EEAE7095F40AB1ED805EF /* MenuContent.swift */; };
 		35292E804BC7C8559AE995C2 /* KeepAwakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E312D685510B308A27E5F925 /* KeepAwakeTests.swift */; };
 		3EEA3AC7CD4C19DB155E227D /* ScreenCleaning.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B2AD0494FB926E1C128271 /* ScreenCleaning.swift */; };
 		5FE8F1812A51B73FA4204FE4 /* FakeFocusedWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5542D3EBC81892F7DF1481BA /* FakeFocusedWindow.swift */; };
 		61E799FE45391FA8334984E5 /* HiddenWindowsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCF75BBD996BAB6692B694F /* HiddenWindowsTests.swift */; };
+		647AC84C82F3497A91266044 /* CommanderMenuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F621A5F4F5739D4DB2E823 /* CommanderMenuTests.swift */; };
 		6F207B1574998ABD58231AB9 /* WindowSlotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B970298227625323E2770EF3 /* WindowSlotTests.swift */; };
 		7C78BB43D8ED8A51D3B9F2D6 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B80DA600AAA07BF37998A9 /* SettingsWindowController.swift */; };
 		7F18A73097B464C11FE86B87 /* DesktopCommanderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26894752526821D63436CB9C /* DesktopCommanderApp.swift */; };
@@ -43,6 +42,7 @@
 		E2A9E68794754C41D88A26BC /* WindowMoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EB7E2AED554668F4AA2467 /* WindowMoverTests.swift */; };
 		E98BEBC552C9BDDC9D623BD5 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3172360C56ECB5520387C33F /* Preferences.swift */; };
 		EB236C73649B3604B70FF471 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28831B662D325780861A334B /* SettingsView.swift */; };
+		F2C966E5BC084E67A229EB81 /* CommanderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53E3CEF855EFC657A65D909 /* CommanderMenu.swift */; };
 		FA23F8150F327584651C68A0 /* ScreenCleaningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43345C2FD759BAFD8654560 /* ScreenCleaningView.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,8 +63,6 @@
 		28831B662D325780861A334B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3172360C56ECB5520387C33F /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		34611C9766032F32B273362F /* PreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTests.swift; sourceTree = "<group>"; };
-		36AE30226CCE7B47DD9C7312 /* MenuBarLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarLabel.swift; sourceTree = "<group>"; };
-		3A9EEAE7095F40AB1ED805EF /* MenuContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContent.swift; sourceTree = "<group>"; };
 		3CA32FCB3E2F870DC1BFFFBE /* ScreenSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaver.swift; sourceTree = "<group>"; };
 		3CCE28EB17657B28702A34B6 /* KeyboardLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardLock.swift; sourceTree = "<group>"; };
 		436A49D2B5E7C1F949CED462 /* DefaultsSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsSwitch.swift; sourceTree = "<group>"; };
@@ -85,11 +83,13 @@
 		A1CC8F08DE419F0DB833CE32 /* CommanderIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderIntents.swift; sourceTree = "<group>"; };
 		A397BCC02C85EAA473DE82B4 /* DefaultsSwitchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultsSwitchTests.swift; sourceTree = "<group>"; };
 		A4B2AD0494FB926E1C128271 /* ScreenCleaning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCleaning.swift; sourceTree = "<group>"; };
+		A53E3CEF855EFC657A65D909 /* CommanderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderMenu.swift; sourceTree = "<group>"; };
 		B4D5FB1077E6AC4BB641C625 /* FocusedWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedWindow.swift; sourceTree = "<group>"; };
 		B5B867776FC4FA3D50984F3B /* WindowMover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowMover.swift; sourceTree = "<group>"; };
 		B970298227625323E2770EF3 /* WindowSlotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSlotTests.swift; sourceTree = "<group>"; };
 		C43345C2FD759BAFD8654560 /* ScreenCleaningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCleaningView.swift; sourceTree = "<group>"; };
 		CF0E0B006F180C35582AC1F5 /* RuntimeEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeEnvironment.swift; sourceTree = "<group>"; };
+		D3F621A5F4F5739D4DB2E823 /* CommanderMenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderMenuTests.swift; sourceTree = "<group>"; };
 		E1B80DA600AAA07BF37998A9 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		E312D685510B308A27E5F925 /* KeepAwakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwakeTests.swift; sourceTree = "<group>"; };
 		ECB260F3A671D8577347EFB1 /* LoginItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
@@ -199,8 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				60BA02D9818F3B8264B4023F /* CommanderGlyph.swift */,
-				36AE30226CCE7B47DD9C7312 /* MenuBarLabel.swift */,
-				3A9EEAE7095F40AB1ED805EF /* MenuContent.swift */,
+				A53E3CEF855EFC657A65D909 /* CommanderMenu.swift */,
 				C43345C2FD759BAFD8654560 /* ScreenCleaningView.swift */,
 				28831B662D325780861A334B /* SettingsView.swift */,
 				E1B80DA600AAA07BF37998A9 /* SettingsWindowController.swift */,
@@ -220,6 +219,7 @@
 		F0EA6F1090607A80E7314E50 /* DesktopCommanderTests */ = {
 			isa = PBXGroup;
 			children = (
+				D3F621A5F4F5739D4DB2E823 /* CommanderMenuTests.swift */,
 				A397BCC02C85EAA473DE82B4 /* DefaultsSwitchTests.swift */,
 				5542D3EBC81892F7DF1481BA /* FakeFocusedWindow.swift */,
 				1DCF75BBD996BAB6692B694F /* HiddenWindowsTests.swift */,
@@ -329,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				647AC84C82F3497A91266044 /* CommanderMenuTests.swift in Sources */,
 				97EC8FE9DC5E9C88A977015A /* DefaultsSwitchTests.swift in Sources */,
 				5FE8F1812A51B73FA4204FE4 /* FakeFocusedWindow.swift in Sources */,
 				61E799FE45391FA8334984E5 /* HiddenWindowsTests.swift in Sources */,
@@ -349,6 +350,7 @@
 				9A0C622692883989818C7CC6 /* AppModel.swift in Sources */,
 				A31AEA156D7E73F3AD2C99D0 /* CommanderGlyph.swift in Sources */,
 				9BD252ED22479DE3DA17EDB6 /* CommanderIntents.swift in Sources */,
+				F2C966E5BC084E67A229EB81 /* CommanderMenu.swift in Sources */,
 				BF0E60752047CC519ACC52C7 /* DefaultsSwitch.swift in Sources */,
 				7F18A73097B464C11FE86B87 /* DesktopCommanderApp.swift in Sources */,
 				8DF3E093923C41EBDB26492B /* FocusedWindow.swift in Sources */,
@@ -357,8 +359,6 @@
 				1A68AB4F67AFA1104B7FAC7B /* KeepAwake.swift in Sources */,
 				2FA8799F1A8CF55EF7A11242 /* KeyboardLock.swift in Sources */,
 				B2A07ACDBC8EDAF361BC8FEB /* LoginItem.swift in Sources */,
-				160FBB572FABBED6302093BF /* MenuBarLabel.swift in Sources */,
-				34C72A90E8B2190D31FA25FB /* MenuContent.swift in Sources */,
 				E98BEBC552C9BDDC9D623BD5 /* Preferences.swift in Sources */,
 				8E57CDB1FA6E57359A02BA7E /* RuntimeEnvironment.swift in Sources */,
 				3EEA3AC7CD4C19DB155E227D /* ScreenCleaning.swift in Sources */,

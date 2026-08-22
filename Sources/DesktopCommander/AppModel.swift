@@ -5,9 +5,9 @@ import Observation
 
 /// The one controller of the app.
 ///
-/// Every way in — the menu, a global hot key, an AppleScript command, a
-/// Shortcuts action — calls the same methods here, so each command has exactly
-/// one code path.
+/// Every way in calls the same methods here: the menu, a global hot key, an
+/// AppleScript command, a Shortcuts action. So each command has exactly one
+/// code path.
 @MainActor
 @Observable
 final class AppModel {

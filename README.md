@@ -110,7 +110,7 @@ Then use a window command once and grant the permission again.
 
 | Item | What it does | Permission |
 | --- | --- | --- |
-| Keep awake | Stops the Mac and the display from sleeping. A submenu sets the length: no end, 15 minutes, 30 minutes, 1 hour, 2 hours, 5 hours. | none |
+| Keep awake | Stops the Mac and the display from sleeping. A submenu turns it off and sets the length: no end, 15 minutes, 30 minutes, 1 hour, 2 hours, 5 hours. A length counts down in the row. | none |
 | Hide the desktop widgets | The same switch as **System Settings → Desktop & Dock → Widgets**. | none |
 | Hide the desktop icons | Finder restarts, which macOS does at once. | none |
 | Show the hidden files | The files whose name starts with a point. Finder restarts. | none |
@@ -259,7 +259,7 @@ A push of a tag `v*` builds the DMG and publishes a release from GitHub Actions.
 | Part | Choice |
 | --- | --- |
 | Language | Swift 6, strict concurrency |
-| Interface | SwiftUI `MenuBarExtra` |
+| Interface | An `NSStatusItem` with an `NSMenu`, and SwiftUI for the Preferences window |
 | Windows | The Accessibility API |
 | Keyboard lock | A `CGEventTap` |
 | Keep awake | An `IOPMAssertion` |

@@ -176,7 +176,7 @@ project layout. Do not edit `project.pbxproj` by hand.
 
 | Entry point | File |
 | --- | --- |
-| Menu | `Views/MenuContent.swift` |
+| Menu | `Views/CommanderMenu.swift` |
 | Global hot key | `HotKeys.swift`, wired in `AppModel.registerHotKeys()` |
 | AppleScript | `Scripting/ScriptCommands.swift` with `Resources/desktop-commander.sdef` |
 | Shortcuts and Spotlight | `Scripting/CommanderIntents.swift` |
@@ -205,6 +205,29 @@ a window off the display, so the conversion is a function with its own tests.
 
 `WindowMover` rounds the frame with `.integral` before it writes. A third of a
 screen is not a whole number of points.
+
+### The menu is AppKit, not SwiftUI
+
+`Views/CommanderMenu.swift` builds an `NSMenu`, and `AppDelegate` in
+`DesktopCommanderApp.swift` puts it on an `NSStatusItem`. `MenuBarExtra` and
+`MenuContent` did this before. One row is the reason.
+
+"Keep awake" needs two things at once: the checkmark in the same column as the
+switches under it, and a submenu of lengths. A SwiftUI row that opens a submenu
+has no state gutter, so the image of a `Label` lands inside the title and draws
+a second column of checkmarks beside the `Toggle` rows. An `NSMenuItem` holds a
+state and a submenu together.
+
+Two things follow from AppKit:
+
+- A click on a row that has a submenu opens the submenu. AppKit runs no action
+  for it, so the submenu of "Keep awake" carries an "Off" row. `primaryAction`
+  of a SwiftUI `Menu` did nothing here either.
+- The menu is built again from nothing each time it opens, and a timer of one
+  second updates the countdown while it stays open. The timer goes into the
+  common run loop modes, because a menu tracks the mouse in its own mode.
+
+The menu bar image is still `CommanderGlyph.menuBar`, unchanged.
 
 ### The switches
 

@@ -46,11 +46,6 @@ final class KeepAwake {
             case .fiveHours: "5 hours"
             }
         }
-
-        /// The line under "Keep awake" in the menu.
-        var subtitle: String {
-            self == .forever ? "Until you turn it off" : "For \(title.lowercased())"
-        }
     }
 
     /// Takes an assertion and gives back its identifier, or `nil` on a failure.
