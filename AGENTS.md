@@ -51,12 +51,12 @@ Never ask for it at launch. `AppModel.requestAccessibility()` asks at the first
 window command, and `KeyboardLock.lock()` asks when the lock starts. A user who
 only wants the switches must never see a permission sheet.
 
-**The permission breaks at every update.** The application is signed ad hoc, so
-its signature changes with every build. macOS ties an Accessibility grant to that
-signature, so after an update the user must remove the application from the list
-in System Settings and add it again. There is no way around this without an Apple
-Developer ID. Say so in the README and in the Settings window; do not pretend it
-does not happen.
+**The permission survives an update.** Releases are signed with a Developer ID
+(see Releases), and macOS ties an Accessibility grant to the team and the bundle
+identifier, not to one build. The update from 1.3.0 or earlier, which were signed
+ad hoc, needs the grant once more: the README and the Settings window say how.
+A local build is still signed ad hoc, so a grant to a local build breaks at every
+build.
 
 **Two copies with one bundle identifier is the trap.** Every copy of this
 application carries `com.fabrizioballiano.desktop-commander`, so:

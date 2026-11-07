@@ -55,18 +55,8 @@ Or download the DMG from the
 [latest release](https://github.com/fballiano/desktop-commander/releases/latest).
 Open it and drag **desktop-commander** into **Applications**.
 
-> [!IMPORTANT]
-> The application is signed ad hoc, not with an Apple Developer ID, so macOS
-> blocks the first launch. Open **System Settings → Privacy & Security** and
-> select **Open Anyway**. Homebrew also marks the application, so this step
-> applies to both ways to install.
->
-> A terminal does the same thing:
->
-> ```bash
-> xattr -dr com.apple.quarantine /Applications/desktop-commander.app
-> open /Applications/desktop-commander.app
-> ```
+The application is signed with an Apple Developer ID and notarized by Apple, so
+it opens like any other application.
 
 The application has no dock icon. It appears in the menu bar.
 
@@ -85,14 +75,13 @@ other six switches need nothing.
 The application never asks at launch. It asks the first time you use a window
 command, so if you only want the switches you never see a permission sheet.
 
-> [!WARNING]
-> **The permission breaks at every update.** The application is signed ad hoc, so
-> its signature changes with every build. macOS ties the permission to that
-> signature. After an update, open **System Settings → Privacy & Security →
-> Accessibility**, remove **desktop-commander** with the minus button, and add it
-> again.
->
-> There is no way around this without an Apple Developer ID.
+> [!NOTE]
+> **The update to 1.3.1 needs the permission once more.** Up to 1.3.0 the
+> application was signed ad hoc, and macOS tied the permission to that signature.
+> From 1.3.1 it is signed with an Apple Developer ID, and the permission stays
+> through every update. After the update from 1.3.0 or earlier, open
+> **System Settings → Privacy & Security → Accessibility**, remove
+> **desktop-commander** with the minus button, and add it again.
 
 If a window command keeps asking for a permission the list already shows as
 granted, two copies of the application are installed. Every copy carries the same

@@ -4266,37 +4266,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every window command needs this permission, and so does the keyboard lock. Nothing else does.\n\nThe application is signed ad hoc, so its signature changes with every update. macOS ties the permission to that signature, so after an update you must remove desktop-commander from the list and add it again."
+            "value": "Every window command needs this permission, and so does the keyboard lock. Nothing else does.\n\nIf a command keeps asking after you switch the permission on, remove desktop-commander from the list and add it again. This happens once, after the update from version 1.3.0 or earlier."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeder Fensterbefehl benötigt diese Berechtigung, und die Tastatursperre auch. Sonst nichts.\n\nDie App ist ad hoc signiert, daher ändert sich ihre Signatur mit jeder Aktualisierung. macOS bindet die Berechtigung an diese Signatur, daher musst du desktop-commander nach einer Aktualisierung aus der Liste entfernen und erneut hinzufügen."
+            "value": "Jeder Fensterbefehl benötigt diese Berechtigung, und die Tastatursperre auch. Sonst nichts.\n\nWenn ein Befehl weiter fragt, nachdem du die Berechtigung eingeschaltet hast, entferne desktop-commander aus der Liste und füge es erneut hinzu. Das passiert einmal, nach der Aktualisierung von Version 1.3.0 oder früher."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de ventana necesita este permiso, y el bloqueo del teclado también. Nada más lo necesita.\n\nLa aplicación está firmada ad hoc, así que su firma cambia con cada actualización. macOS ata el permiso a esa firma, así que después de una actualización debes quitar desktop-commander de la lista y añadirlo de nuevo."
+            "value": "Cada comando de ventana necesita este permiso, y el bloqueo del teclado también. Nada más lo necesita.\n\nSi un comando sigue pidiéndolo después de activar el permiso, quita desktop-commander de la lista y añádelo de nuevo. Esto ocurre una sola vez, después de actualizar desde la versión 1.3.0 o anterior."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque commande de fenêtre a besoin de cette autorisation, et le verrouillage du clavier aussi. Rien d'autre n'en a besoin.\n\nL'application est signée ad hoc, donc sa signature change à chaque mise à jour. macOS lie l'autorisation à cette signature, donc après une mise à jour vous devez retirer desktop-commander de la liste et l'ajouter de nouveau."
+            "value": "Chaque commande de fenêtre a besoin de cette autorisation, et le verrouillage du clavier aussi. Rien d'autre n'en a besoin.\n\nSi une commande la demande encore après que vous l'avez activée, retirez desktop-commander de la liste et ajoutez-le de nouveau. Cela n'arrive qu'une fois, après la mise à jour depuis la version 1.3.0 ou antérieure."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni comando delle finestre ha bisogno di questo permesso, e anche il blocco della tastiera. Nient'altro ne ha bisogno.\n\nL'applicazione è firmata ad hoc, quindi la sua firma cambia a ogni aggiornamento. macOS lega il permesso a quella firma, quindi dopo un aggiornamento devi togliere desktop-commander dall'elenco e aggiungerlo di nuovo."
+            "value": "Ogni comando delle finestre ha bisogno di questo permesso, e anche il blocco della tastiera. Nient'altro ne ha bisogno.\n\nSe un comando continua a chiederlo dopo che hai attivato il permesso, togli desktop-commander dall'elenco e aggiungilo di nuovo. Succede una sola volta, dopo l'aggiornamento dalla versione 1.3.0 o precedente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de janela precisa desta permissão, e o bloqueio do teclado também. Nada mais precisa.\n\nO app é assinado ad hoc, então a sua assinatura muda a cada atualização. O macOS liga a permissão a essa assinatura, então depois de uma atualização você precisa remover o desktop-commander da lista e adicioná-lo de novo."
+            "value": "Cada comando de janela precisa desta permissão, e o bloqueio do teclado também. Nada mais precisa.\n\nSe um comando continuar pedindo depois que você ativar a permissão, remova o desktop-commander da lista e adicione-o de novo. Isso acontece uma vez, depois da atualização da versão 1.3.0 ou anterior."
           }
         }
       }
