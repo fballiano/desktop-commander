@@ -7,11 +7,15 @@
 #   make run        build, then launch the app
 #   make install    copy the app into /Applications
 #   make dmg        build the Release app and pack it into ./dist/*.dmg
+#   make package    pack the Release app that is already built into ./dist/*.dmg
 #   make clean      remove ./build and ./dist
 #
 # Set VERSION to stamp a version into the build, for example:
 #
 #   make dmg VERSION=1.0.0 BUILD_NUMBER=7
+#
+# Set XCODE_FLAGS to add settings to the Release build. The release workflow
+# signs with a Developer ID this way; a local build stays signed ad hoc.
 
 SHELL          := /bin/bash
 PROJECT        := DesktopCommander.xcodeproj
@@ -35,8 +39,9 @@ endif
 ifneq ($(BUILD_NUMBER),)
 VERSION_FLAGS  += CURRENT_PROJECT_VERSION=$(BUILD_NUMBER)
 endif
+XCODE_FLAGS    ?=
 
-.PHONY: all generate build debug test run install uninstall dmg clean
+.PHONY: all generate build debug test run install uninstall dmg package clean
 
 all: build
 
@@ -44,7 +49,7 @@ generate:
 	xcodegen generate
 
 build:
-	$(XCODEBUILD) -configuration Release $(VERSION_FLAGS) $(QUIET) build
+	$(XCODEBUILD) -configuration Release $(VERSION_FLAGS) $(XCODE_FLAGS) $(QUIET) build
 	@echo "Built $(APP_RELEASE)"
 
 debug:
@@ -87,9 +92,13 @@ uninstall:
 	@rm -rf /Applications/$(APP)
 	@echo "Removed /Applications/$(APP)"
 
+dmg: build package
+
 # A disk image with the app and a link to /Applications. The version comes from
-# the built app, so the name of the file always matches the bundle.
-dmg: build
+# the built app, so the name of the file always matches the bundle. This packs
+# the app as it is: the release workflow notarizes the app before it packs it,
+# and a second build could sign it again and drop the ticket.
+package:
 	@set -euo pipefail; \
 	version=$$($(PLIST_BUDDY) -c "Print CFBundleShortVersionString" "$(APP_RELEASE)/Contents/Info.plist"); \
 	staging="$(DIST_DIR)/dmg"; \

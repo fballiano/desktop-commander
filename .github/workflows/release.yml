@@ -4,9 +4,27 @@ name: Release
 #
 #   git tag -a v1.0.0 -m "v1.0.0" && git push origin v1.0.0
 #
-# The workflow builds the universal Release app, packs it into a DMG, attaches
-# the DMG to a new GitHub release and updates the Homebrew cask on the default
-# branch.
+# The workflow builds the universal Release app, signs it with the Developer
+# ID certificate, has Apple notarize it, packs it into a DMG that is signed and
+# notarized too, attaches the DMG to a new GitHub release, and updates the
+# Homebrew cask on the default branch.
+#
+# Run it by hand (Actions -> Release -> Run workflow) with "dry run" on to
+# sign and notarize without a release: the DMG stays on the run as an
+# artifact. With "dry run" off, a manual run publishes the version you type.
+#
+# What it needs, in the repository settings (fballiano/termora has
+# Scripts/setup-signing.sh, which sets them for several repositories at once):
+#
+#   variable  APPLE_TEAM_ID                the ten-character Team ID
+#   secret    DEVELOPER_ID_P12_BASE64      the Developer ID Application
+#                                          certificate and its key, .p12,
+#                                          in base64
+#   secret    DEVELOPER_ID_P12_PASSWORD    the password of that .p12
+#   secret    NOTARY_KEY_P8_BASE64         an App Store Connect API key,
+#                                          .p8, in base64
+#   secret    NOTARY_KEY_ID                the ID of that key
+#   secret    NOTARY_ISSUER_ID             the issuer ID of that key
 
 on:
   push:
@@ -17,6 +35,10 @@ on:
       version:
         description: "Version to build, without the leading v, for example 1.0.0"
         required: true
+      dry_run:
+        description: "Dry run: sign and notarize, keep the DMG as an artifact, publish nothing"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -24,7 +46,11 @@ permissions:
 jobs:
   release:
     runs-on: macos-26
-    timeout-minutes: 45
+    timeout-minutes: 90
+    env:
+      TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+      APP: build/Build/Products/Release/desktop-commander.app
+      PUBLISH: ${{ github.event_name == 'push' || !inputs.dry_run }}
 
     steps:
       - name: Check out the repository
@@ -50,43 +76,130 @@ jobs:
       - name: Run the tests
         run: make test
 
-      - name: Build the disk image
-        run: |
-          make dmg VERSION="${{ steps.version.outputs.version }}" \
-                   BUILD_NUMBER="${{ github.run_number }}"
-
-      - name: Check the disk image
-        id: dmg
+      # A keychain of its own, for this run only. The certificate never
+      # touches the disk outside the runner's temporary folder.
+      - name: Import the Developer ID certificate and the notary key
+        env:
+          P12_BASE64: ${{ secrets.DEVELOPER_ID_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.DEVELOPER_ID_P12_PASSWORD }}
+          NOTARY_KEY_P8_BASE64: ${{ secrets.NOTARY_KEY_P8_BASE64 }}
         run: |
           set -euo pipefail
+          if [ -z "$TEAM_ID" ] || [ -z "$P12_BASE64" ] || [ -z "$NOTARY_KEY_P8_BASE64" ]; then
+            echo "::error::The signing variable or secrets are not set. See the comment at the top of this file."
+            exit 1
+          fi
+          KEYCHAIN="$RUNNER_TEMP/signing.keychain-db"
+          echo "KEYCHAIN=$KEYCHAIN" >> "$GITHUB_ENV"
+          KEYCHAIN_PASSWORD="$(openssl rand -hex 24)"
+          echo "$P12_BASE64" | base64 --decode > "$RUNNER_TEMP/developer-id.p12"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN"
+          security import "$RUNNER_TEMP/developer-id.p12" -k "$KEYCHAIN" \
+            -P "$P12_PASSWORD" -T /usr/bin/codesign
+          rm "$RUNNER_TEMP/developer-id.p12"
+          security set-key-partition-list -S apple-tool:,apple: -s \
+            -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN" > /dev/null
+          # The current list, word by word: the paths hold no spaces.
+          read -r -a existing <<< "$(security list-keychains -d user | tr -d '"' | xargs)"
+          security list-keychains -d user -s "$KEYCHAIN" "${existing[@]}"
+          security find-identity -v -p codesigning "$KEYCHAIN"
+
+          NOTARY_KEY_PATH="$RUNNER_TEMP/notary-key.p8"
+          echo "$NOTARY_KEY_P8_BASE64" | base64 --decode > "$NOTARY_KEY_PATH"
+          echo "NOTARY_KEY_PATH=$NOTARY_KEY_PATH" >> "$GITHUB_ENV"
+
+      # The settings reach xcodebuild through XCODE_FLAGS. Notarization
+      # refuses an executable without the hardened runtime or a secure
+      # timestamp, and Xcode's base entitlements would add get-task-allow,
+      # which it refuses too.
+      - name: Build and sign the app
+        run: |
+          make build VERSION="${{ steps.version.outputs.version }}" \
+                     BUILD_NUMBER="${{ github.run_number }}" \
+                     XCODE_FLAGS="CODE_SIGN_STYLE=Manual \
+                                  CODE_SIGN_IDENTITY='Developer ID Application' \
+                                  DEVELOPMENT_TEAM=$TEAM_ID \
+                                  OTHER_CODE_SIGN_FLAGS='--timestamp --keychain $KEYCHAIN' \
+                                  ENABLE_HARDENED_RUNTIME=YES \
+                                  CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO"
+
+      - name: Check the signature of the app
+        run: |
+          set -euo pipefail
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          for binary in "$APP"/Contents/MacOS/*; do
+            echo "== $binary"
+            lipo -archs "$binary"
+            details="$(codesign -dvv "$binary" 2>&1)"
+            echo "$details" | grep -E "Authority=Developer ID Application|TeamIdentifier|flags|Timestamp"
+            grep -q "TeamIdentifier=$TEAM_ID" <<< "$details" \
+              || { echo "::error::$binary is not signed by team $TEAM_ID"; exit 1; }
+            grep -q "(runtime)" <<< "$details" \
+              || { echo "::error::$binary has no hardened runtime"; exit 1; }
+            grep -q "^Timestamp=" <<< "$details" \
+              || { echo "::error::$binary has no secure timestamp"; exit 1; }
+            if grep -q "get-task-allow" \
+                 <<< "$(codesign -d --entitlements :- "$binary" 2>/dev/null)"; then
+              echo "::error::$binary carries get-task-allow"; exit 1
+            fi
+          done
+
+      # The app gets a ticket of its own before it goes into the DMG, so it
+      # opens without a network check once it is copied out.
+      - name: Notarize the app
+        env:
+          NOTARY_KEY_ID: ${{ secrets.NOTARY_KEY_ID }}
+          NOTARY_ISSUER_ID: ${{ secrets.NOTARY_ISSUER_ID }}
+        run: Tools/notarize.sh "$APP"
+
+      - name: Pack, sign and notarize the disk image
+        id: dmg
+        env:
+          NOTARY_KEY_ID: ${{ secrets.NOTARY_KEY_ID }}
+          NOTARY_ISSUER_ID: ${{ secrets.NOTARY_ISSUER_ID }}
+        run: |
+          set -euo pipefail
+          make package
           path=$(ls dist/*.dmg)
+          codesign --sign "Developer ID Application" --timestamp --keychain "$KEYCHAIN" "$path"
+          Tools/notarize.sh "$path"
           echo "path=$path" >> "$GITHUB_OUTPUT"
           echo "sha256=$(shasum -a 256 "$path" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
-          # The app must be a universal binary and must carry a signature.
+
+      - name: Check the disk image
+        run: |
+          set -euo pipefail
+          path="${{ steps.dmg.outputs.path }}"
+          spctl --assess --type open --context context:primary-signature --verbose=4 "$path"
+          # The app must be a universal binary, signed, and accepted by
+          # Gatekeeper as notarized.
           hdiutil attach "$path" -nobrowse -mountpoint /tmp/desktop-commander-dmg
           lipo -archs /tmp/desktop-commander-dmg/desktop-commander.app/Contents/MacOS/desktop-commander
-          codesign --verify --verbose /tmp/desktop-commander-dmg/desktop-commander.app
+          codesign --verify --strict --verbose /tmp/desktop-commander-dmg/desktop-commander.app
+          xcrun stapler validate /tmp/desktop-commander-dmg/desktop-commander.app
+          spctl --assess --type execute --verbose=4 /tmp/desktop-commander-dmg/desktop-commander.app
           hdiutil detach /tmp/desktop-commander-dmg
 
+      - name: Keep the dry-run disk image
+        if: env.PUBLISH != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-commander-${{ steps.version.outputs.version }}-dry-run
+          path: ${{ steps.dmg.outputs.path }}
+
       - name: Write the release notes
+        if: env.PUBLISH == 'true'
         run: |
           cat > /tmp/notes.md <<'NOTES'
           ## Install
 
           1. Download the DMG below.
           2. Open it and drag **desktop-commander** into **Applications**.
-          3. The first launch shows a warning, because the app is not signed with
-             an Apple Developer ID. Open **System Settings → Privacy & Security**
-             and select **Open Anyway**.
 
-          A terminal does the same thing:
-
-          ```bash
-          xattr -dr com.apple.quarantine /Applications/desktop-commander.app
-          open /Applications/desktop-commander.app
-          ```
-
-          The app has no dock icon. It appears in the menu bar.
+          The app is signed with an Apple Developer ID and notarized by Apple.
+          It has no dock icon. It appears in the menu bar.
 
           ## Requirements
 
@@ -96,6 +209,7 @@ jobs:
           printf 'SHA-256 of the DMG: `%s`\n' "${{ steps.dmg.outputs.sha256 }}" >> /tmp/notes.md
 
       - name: Publish the release
+        if: env.PUBLISH == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -110,6 +224,7 @@ jobs:
       # release that the step above published, so this step runs last. The same
       # commit stores the version, which a local build reads.
       - name: Update the Homebrew cask and the stored version
+        if: env.PUBLISH == 'true'
         env:
           BRANCH: ${{ github.event.repository.default_branch }}
         run: |
@@ -138,3 +253,11 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Update the Homebrew cask and the version to $version" -- $files
           git push origin "HEAD:$BRANCH"
+
+      - name: Remove the signing keychain and the notary key
+        if: always()
+        run: |
+          if [ -n "${KEYCHAIN:-}" ]; then
+            security delete-keychain "$KEYCHAIN" 2>/dev/null || true
+          fi
+          rm -f "${NOTARY_KEY_PATH:-/nonexistent}"

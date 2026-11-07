@@ -25,6 +25,7 @@ make test        # run the unit tests
 make run         # build, then launch the app
 make install     # copy the app into /Applications
 make dmg         # build the Release app and pack it into ./dist/*.dmg
+make package     # pack the Release app that is already built into ./dist/*.dmg
 make generate    # rebuild DesktopCommander.xcodeproj from project.yml (needs xcodegen)
 make clean       # remove ./build and ./dist
 ```
@@ -186,6 +187,17 @@ The workflow runs the tests, calls `make dmg`, and attaches the disk image to a
 new GitHub release. The last step then writes the version into `project.yml` and
 into `DesktopCommander.xcodeproj/project.pbxproj`. Do not edit the
 `MARKETING_VERSION` lines by hand.
+
+A release is signed with the Developer ID certificate and notarized by Apple.
+The workflow passes the signing settings to `make build` through `XCODE_FLAGS`,
+notarizes the app with `Tools/notarize.sh`, packs the stapled app with
+`make package`, and then signs and notarizes the disk image too. `make dmg`
+would build again, and a second build can sign the app again and drop its
+ticket. Local builds stay signed ad hoc and need no certificate.
+
+The variable and the five secrets that the workflow needs are listed at the top
+of `release.yml`. A manual run with "dry run" on (the default) signs and
+notarizes, keeps the disk image as an artifact, and publishes nothing.
 
 ## Homebrew
 
