@@ -13,7 +13,7 @@ name: Release
 # sign and notarize without a release: the DMG stays on the run as an
 # artifact. With "dry run" off, a manual run publishes the version you type.
 #
-# What it needs, in the repository settings (fballiano/termora has
+# What it needs, in the repository settings (fballiano/shellyard has
 # Scripts/setup-signing.sh, which sets them for several repositories at once):
 #
 #   variable  APPLE_TEAM_ID                the ten-character Team ID
