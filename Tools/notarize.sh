@@ -3,8 +3,8 @@
 # Notarizes an app or a disk image, waits for Apple's answer, and staples the
 # ticket to it.
 #
-#   Tools/notarize.sh dist/desktop-commander-1.0.0.dmg
-#   Tools/notarize.sh build/Build/Products/Release/desktop-commander.app
+#   Tools/notarize.sh dist/Deskyard-1.0.0.dmg
+#   Tools/notarize.sh build/Build/Products/Release/Deskyard.app
 #
 # It needs an App Store Connect API key in three variables: NOTARY_KEY_PATH
 # (the .p8 file), NOTARY_KEY_ID, and NOTARY_ISSUER_ID. The release workflow

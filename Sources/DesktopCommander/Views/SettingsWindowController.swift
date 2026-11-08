@@ -43,7 +43,7 @@ final class SettingsWindowController {
             defer: false
         )
         window.contentView = content
-        window.title = String(localized: "desktop-commander Preferences")
+        window.title = String(localized: "Deskyard Preferences")
         // The window is kept for the next call, so it must survive its close.
         window.isReleasedWhenClosed = false
         window.center()

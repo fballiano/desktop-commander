@@ -66,7 +66,7 @@ final class KeyboardLock {
 
         guard Accessibility.request() else {
             lastError = String(
-                localized: "desktop-commander needs the Accessibility permission to lock the keyboard."
+                localized: "Deskyard needs the Accessibility permission to lock the keyboard."
             )
             return
         }

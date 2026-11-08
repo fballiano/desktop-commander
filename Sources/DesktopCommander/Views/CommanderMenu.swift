@@ -110,11 +110,11 @@ final class CommanderMenu: NSObject, NSMenuDelegate {
         menu.addItem(.separator())
 
         add(String(localized: "Preferences…"), to: menu, key: ",") { [model] in model.showSettings() }
-        add(String(localized: "About desktop-commander"), to: menu) { [model] in model.showAbout() }
+        add(String(localized: "About Deskyard"), to: menu) { [model] in model.showAbout() }
 
         menu.addItem(.separator())
 
-        add(String(localized: "Quit desktop-commander"), to: menu, key: "q") { [model] in model.quit() }
+        add(String(localized: "Quit Deskyard"), to: menu, key: "q") { [model] in model.quit() }
     }
 
     /// The lengths of the keep awake switch.

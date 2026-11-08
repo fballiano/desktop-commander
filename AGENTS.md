@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this project is
 
-`desktop-commander` is a macOS menu bar application. It does two things:
+Deskyard is a macOS menu bar application. It does two things:
 
 1. **Switches** that change the state of the Mac: keep awake, hide the desktop
    widgets, hide the desktop icons, show the hidden files, hide the windows, lock
@@ -61,7 +61,7 @@ build.
 **Two copies with one bundle identifier is the trap.** Every copy of this
 application carries `com.fabrizioballiano.desktop-commander`, so:
 
-- `open /Applications/desktop-commander.app` does **not** launch that copy while
+- `open /Applications/Deskyard.app` does **not** launch that copy while
   another one is running. macOS only brings the running one forward. Use
   `open -n`, which is what `make run` does.
 - `make test` used to leave the Debug test host running for the rest of the day.
@@ -72,8 +72,10 @@ application carries `com.fabrizioballiano.desktop-commander`, so:
   something is already there. It leaves the app in the Caskroom and says so in a
   line that is easy to miss. `make install` and the cask must never both own that
   path.
+- A copy from 1.3.1 or earlier has the name `desktop-commander.app` and the same
+  bundle identifier. `make install` and `make uninstall` remove it too.
 
-To put it right: `pkill -f desktop-commander`, then
+To put it right: `pkill -f Deskyard`, then
 `tccutil reset Accessibility com.fabrizioballiano.desktop-commander`, then launch
 one copy and grant the permission again.
 
@@ -183,10 +185,11 @@ git tag -a v1.0.0 -m "v1.0.0"
 git push origin v1.0.0
 ```
 
-The workflow runs the tests, calls `make dmg`, and attaches the disk image to a
-new GitHub release. The last step then writes the version into `project.yml` and
-into `DesktopCommander.xcodeproj/project.pbxproj`. Do not edit the
-`MARKETING_VERSION` lines by hand.
+The workflow runs the tests, calls `make dmg`, and attaches the disk image
+`Deskyard-<version>.dmg` to a new GitHub release. Then it writes the version into
+`project.yml` and into `DesktopCommander.xcodeproj/project.pbxproj`, and updates
+the cask in the tap (see Homebrew). Do not edit the `MARKETING_VERSION` lines by
+hand.
 
 A release is signed with the Developer ID certificate and notarized by Apple.
 The workflow passes the signing settings to `make build` through `XCODE_FLAGS`,
@@ -195,24 +198,30 @@ notarizes the app with `Tools/notarize.sh`, packs the stapled app with
 would build again, and a second build can sign the app again and drop its
 ticket. Local builds stay signed ad hoc and need no certificate.
 
-The variable and the five secrets that the workflow needs are listed at the top
+The variable and the six secrets that the workflow needs are listed at the top
 of `release.yml`. A manual run with "dry run" on (the default) signs and
 notarizes, keeps the disk image as an artifact, and publishes nothing.
 
 ## Homebrew
 
-This repository is also the Homebrew tap. The cask is
-`Casks/desktop-commander.rb`. The name of the repository has no `homebrew-`
-prefix, so the tap command needs the URL:
+The cask lives in the shared tap `fballiano/homebrew-tap`, as
+`Casks/deskyard.rb`:
 
 ```bash
-brew tap fballiano/desktop-commander https://github.com/fballiano/desktop-commander
-brew trust --cask fballiano/desktop-commander/desktop-commander
-brew install --cask desktop-commander
+brew tap fballiano/tap
+brew trust --tap fballiano/tap
+brew install --cask deskyard
 ```
 
-The release workflow writes the new `version` and `sha256` into the cask and
-pushes the change to the default branch. Do not edit the two lines by hand.
+The release workflow writes the new `version` and `sha256` into that cask and
+pushes the change to the tap. It uses the deploy key in the secret
+`TAP_DEPLOY_KEY`, which can write to the tap only. Do not edit the two lines by
+hand.
+
+`Casks/desktop-commander.rb` in this repository is the cask of the old tap
+`fballiano/desktop-commander`. It is frozen at 1.3.1 and deprecated, so its
+users learn about the move. No release changes it. Do not delete it: the users
+of the old tap still read it.
 
 A local tap clone made before a release still holds the old checksum, so
 `brew update` comes before `brew upgrade`.
@@ -363,5 +372,12 @@ Add the same guard to any new code that touches the system.
 - `WindowSlot.caseDisplayRepresentations` in `Scripting/CommanderIntents.swift`
   is written out case by case, because the App Intents metadata tool reads it at
   build time and refuses a loop. A test checks that it holds every case.
-- The bundle identifier is `com.fabrizioballiano.desktop-commander`. The product
-  name is `desktop-commander`. The module name is `DesktopCommander`.
+- The product name is `Deskyard`, so the application is `Deskyard.app`. The
+  bundle identifier is `com.fabrizioballiano.desktop-commander`, and the module
+  name is `DesktopCommander`.
+- The application had the name desktop-commander up to 1.3.1. The bundle
+  identifier keeps the old name on purpose: macOS keys the Accessibility
+  permission and the settings by it, so a change would lose both. The module
+  name, the project, the scheme, the source folders, the `.sdef` file and the
+  type names keep the old name too. They are internal, and the tests and the
+  App Intents depend on the module name.

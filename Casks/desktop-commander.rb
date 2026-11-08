@@ -12,6 +12,8 @@ cask "desktop-commander" do
     strategy :github_latest
   end
 
+  deprecate! date: "2026-11-08", because: "has moved to fballiano/tap/deskyard"
+
   depends_on macos: :sequoia
 
   app "desktop-commander.app"

@@ -320,43 +320,43 @@
         }
       }
     },
-    "About desktop-commander": {
+    "About Deskyard": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "About desktop-commander"
+            "value": "About Deskyard"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Über desktop-commander"
+            "value": "Über Deskyard"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Acerca de desktop-commander"
+            "value": "Acerca de Deskyard"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "À propos de desktop-commander"
+            "value": "À propos de Deskyard"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Informazioni su desktop-commander"
+            "value": "Informazioni su Deskyard"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sobre o desktop-commander"
+            "value": "Sobre o Deskyard"
           }
         }
       }
@@ -768,6 +768,173 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cobre cada tela de preto, para que você possa limpá-la."
+          }
+        }
+      }
+    },
+    "Deskyard Preferences": {
+      "comment": "The title of the settings window.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard Preferences"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard Einstellungen"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferencias de Deskyard"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Préférences de Deskyard"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferenze di Deskyard"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferências do Deskyard"
+          }
+        }
+      }
+    },
+    "Deskyard keeps this Mac awake": {
+      "comment": "The reason of the power assertion. Activity Monitor shows it.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard keeps this Mac awake"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard hält diesen Mac wach"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard mantiene activo este Mac"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard garde ce Mac éveillé"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard mantiene sveglio questo Mac"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Deskyard mantém este Mac acordado"
+          }
+        }
+      }
+    },
+    "Deskyard needs the Accessibility permission": {
+      "comment": "The title of the alert.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard needs the Accessibility permission"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard benötigt die Berechtigung „Bedienungshilfen“"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard necesita el permiso de Accesibilidad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard a besoin de l'autorisation Accessibilité"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard ha bisogno del permesso Accessibilità"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Deskyard precisa da permissão de Acessibilidade"
+          }
+        }
+      }
+    },
+    "Deskyard needs the Accessibility permission to lock the keyboard.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard needs the Accessibility permission to lock the keyboard."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard benötigt die Berechtigung „Bedienungshilfen“, um die Tastatur zu sperren."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard necesita el permiso de Accesibilidad para bloquear el teclado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard a besoin de l'autorisation Accessibilité pour verrouiller le clavier."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard ha bisogno del permesso Accessibilità per bloccare la tastiera."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Deskyard precisa da permissão de Acessibilidade para bloquear o teclado."
           }
         }
       }
@@ -2373,43 +2540,43 @@
         }
       }
     },
-    "Quit desktop-commander": {
+    "Quit Deskyard": {
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quit desktop-commander"
+            "value": "Quit Deskyard"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "desktop-commander beenden"
+            "value": "Deskyard beenden"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Salir de desktop-commander"
+            "value": "Salir de Deskyard"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quitter desktop-commander"
+            "value": "Quitter Deskyard"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esci da desktop-commander"
+            "value": "Esci da Deskyard"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Encerrar o desktop-commander"
+            "value": "Encerrar o Deskyard"
           }
         }
       }
@@ -2947,6 +3114,47 @@
         }
       }
     },
+    "Start Deskyard at login": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Deskyard at login"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deskyard bei der Anmeldung starten"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar Deskyard al iniciar sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancer Deskyard à l'ouverture de session"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia Deskyard al login"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar o Deskyard ao iniciar a sessão"
+          }
+        }
+      }
+    },
     "Start Screen Saver": {
       "extractionState": "manual",
       "localizations": {
@@ -2984,47 +3192,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Iniciar o protetor de tela"
-          }
-        }
-      }
-    },
-    "Start desktop-commander at login": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start desktop-commander at login"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander bei der Anmeldung starten"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Iniciar desktop-commander al iniciar sesión"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Lancer desktop-commander à l'ouverture de session"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Avvia desktop-commander al login"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Iniciar o desktop-commander ao iniciar a sessão"
           }
         }
       }
@@ -3848,204 +4015,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every window command needs it, and so does the keyboard lock. Nothing else does.\n\nOpen System Settings, then Privacy & Security, then Accessibility, and switch desktop-commander on."
+            "value": "Every window command needs it, and so does the keyboard lock. Nothing else does.\n\nOpen System Settings, then Privacy & Security, then Accessibility, and switch Deskyard on."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeder Fensterbefehl benötigt sie, und die Tastatursperre auch. Sonst nichts.\n\nÖffne die Systemeinstellungen, dann „Datenschutz & Sicherheit“, dann „Bedienungshilfen“, und schalte desktop-commander ein."
+            "value": "Jeder Fensterbefehl benötigt sie, und die Tastatursperre auch. Sonst nichts.\n\nÖffne die Systemeinstellungen, dann „Datenschutz & Sicherheit“, dann „Bedienungshilfen“, und schalte Deskyard ein."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de ventana lo necesita, y el bloqueo del teclado también. Nada más.\n\nAbre Ajustes del Sistema, luego Privacidad y seguridad, luego Accesibilidad, y activa desktop-commander."
+            "value": "Cada comando de ventana lo necesita, y el bloqueo del teclado también. Nada más.\n\nAbre Ajustes del Sistema, luego Privacidad y seguridad, luego Accesibilidad, y activa Deskyard."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque commande de fenêtre en a besoin, et le verrouillage du clavier aussi. Rien d'autre.\n\nOuvrez Réglages Système, puis Confidentialité et sécurité, puis Accessibilité, et activez desktop-commander."
+            "value": "Chaque commande de fenêtre en a besoin, et le verrouillage du clavier aussi. Rien d'autre.\n\nOuvrez Réglages Système, puis Confidentialité et sécurité, puis Accessibilité, et activez Deskyard."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni comando delle finestre ne ha bisogno, e anche il blocco della tastiera. Nient'altro.\n\nApri Impostazioni di Sistema, poi Privacy e sicurezza, poi Accessibilità, e attiva desktop-commander."
+            "value": "Ogni comando delle finestre ne ha bisogno, e anche il blocco della tastiera. Nient'altro.\n\nApri Impostazioni di Sistema, poi Privacy e sicurezza, poi Accessibilità, e attiva Deskyard."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de janela precisa dela, e o bloqueio do teclado também. Nada mais.\n\nAbra os Ajustes do Sistema, depois Privacidade e Segurança, depois Acessibilidade, e ative o desktop-commander."
-          }
-        }
-      }
-    },
-    "desktop-commander Preferences": {
-      "comment": "The title of the settings window.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander Preferences"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander Einstellungen"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preferencias de desktop-commander"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Préférences de desktop-commander"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preferenze di desktop-commander"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preferências do desktop-commander"
-          }
-        }
-      }
-    },
-    "desktop-commander keeps this Mac awake": {
-      "comment": "The reason of the power assertion. Activity Monitor shows it.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander keeps this Mac awake"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander hält diesen Mac wach"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander mantiene activo este Mac"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander garde ce Mac éveillé"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander mantiene sveglio questo Mac"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O desktop-commander mantém este Mac acordado"
-          }
-        }
-      }
-    },
-    "desktop-commander needs the Accessibility permission": {
-      "comment": "The title of the alert.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander needs the Accessibility permission"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander benötigt die Berechtigung „Bedienungshilfen“"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander necesita el permiso de Accesibilidad"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander a besoin de l'autorisation Accessibilité"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander ha bisogno del permesso Accessibilità"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O desktop-commander precisa da permissão de Acessibilidade"
-          }
-        }
-      }
-    },
-    "desktop-commander needs the Accessibility permission to lock the keyboard.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander needs the Accessibility permission to lock the keyboard."
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander benötigt die Berechtigung „Bedienungshilfen“, um die Tastatur zu sperren."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander necesita el permiso de Accesibilidad para bloquear el teclado."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander a besoin de l'autorisation Accessibilité pour verrouiller le clavier."
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "desktop-commander ha bisogno del permesso Accessibilità per bloccare la tastiera."
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "O desktop-commander precisa da permissão de Acessibilidade para bloquear o teclado."
+            "value": "Cada comando de janela precisa dela, e o bloqueio do teclado também. Nada mais.\n\nAbra os Ajustes do Sistema, depois Privacidade e Segurança, depois Acessibilidade, e ative o Deskyard."
           }
         }
       }
@@ -4266,37 +4266,37 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Every window command needs this permission, and so does the keyboard lock. Nothing else does.\n\nIf a command keeps asking after you switch the permission on, remove desktop-commander from the list and add it again. This happens once, after the update from version 1.3.0 or earlier."
+            "value": "Every window command needs this permission, and so does the keyboard lock. Nothing else does.\n\nIf a command keeps asking after you switch the permission on, remove Deskyard from the list and add it again. This happens once, after the update from version 1.3.0 or earlier."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Jeder Fensterbefehl benötigt diese Berechtigung, und die Tastatursperre auch. Sonst nichts.\n\nWenn ein Befehl weiter fragt, nachdem du die Berechtigung eingeschaltet hast, entferne desktop-commander aus der Liste und füge es erneut hinzu. Das passiert einmal, nach der Aktualisierung von Version 1.3.0 oder früher."
+            "value": "Jeder Fensterbefehl benötigt diese Berechtigung, und die Tastatursperre auch. Sonst nichts.\n\nWenn ein Befehl weiter fragt, nachdem du die Berechtigung eingeschaltet hast, entferne Deskyard aus der Liste und füge es erneut hinzu. Das passiert einmal, nach der Aktualisierung von Version 1.3.0 oder früher."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de ventana necesita este permiso, y el bloqueo del teclado también. Nada más lo necesita.\n\nSi un comando sigue pidiéndolo después de activar el permiso, quita desktop-commander de la lista y añádelo de nuevo. Esto ocurre una sola vez, después de actualizar desde la versión 1.3.0 o anterior."
+            "value": "Cada comando de ventana necesita este permiso, y el bloqueo del teclado también. Nada más lo necesita.\n\nSi un comando sigue pidiéndolo después de activar el permiso, quita Deskyard de la lista y añádelo de nuevo. Esto ocurre una sola vez, después de actualizar desde la versión 1.3.0 o anterior."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chaque commande de fenêtre a besoin de cette autorisation, et le verrouillage du clavier aussi. Rien d'autre n'en a besoin.\n\nSi une commande la demande encore après que vous l'avez activée, retirez desktop-commander de la liste et ajoutez-le de nouveau. Cela n'arrive qu'une fois, après la mise à jour depuis la version 1.3.0 ou antérieure."
+            "value": "Chaque commande de fenêtre a besoin de cette autorisation, et le verrouillage du clavier aussi. Rien d'autre n'en a besoin.\n\nSi une commande la demande encore après que vous l'avez activée, retirez Deskyard de la liste et ajoutez-le de nouveau. Cela n'arrive qu'une fois, après la mise à jour depuis la version 1.3.0 ou antérieure."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ogni comando delle finestre ha bisogno di questo permesso, e anche il blocco della tastiera. Nient'altro ne ha bisogno.\n\nSe un comando continua a chiederlo dopo che hai attivato il permesso, togli desktop-commander dall'elenco e aggiungilo di nuovo. Succede una sola volta, dopo l'aggiornamento dalla versione 1.3.0 o precedente."
+            "value": "Ogni comando delle finestre ha bisogno di questo permesso, e anche il blocco della tastiera. Nient'altro ne ha bisogno.\n\nSe un comando continua a chiederlo dopo che hai attivato il permesso, togli Deskyard dall'elenco e aggiungilo di nuovo. Succede una sola volta, dopo l'aggiornamento dalla versione 1.3.0 o precedente."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Cada comando de janela precisa desta permissão, e o bloqueio do teclado também. Nada mais precisa.\n\nSe um comando continuar pedindo depois que você ativar a permissão, remova o desktop-commander da lista e adicione-o de novo. Isso acontece uma vez, depois da atualização da versão 1.3.0 ou anterior."
+            "value": "Cada comando de janela precisa desta permissão, e o bloqueio do teclado também. Nada mais precisa.\n\nSe um comando continuar pedindo depois que você ativar a permissão, remova o Deskyard da lista e adicione-o de novo. Isso acontece uma vez, depois da atualização da versão 1.3.0 ou anterior."
           }
         }
       }

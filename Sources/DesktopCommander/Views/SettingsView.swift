@@ -34,7 +34,7 @@ private struct GeneralSettingsView: View {
 
         Form {
             Section("Startup") {
-                Toggle("Start desktop-commander at login", isOn: $loginItem.isEnabled)
+                Toggle("Start Deskyard at login", isOn: $loginItem.isEnabled)
 
                 if let error = loginItem.lastError {
                     Text(error)

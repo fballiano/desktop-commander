@@ -56,8 +56,8 @@ targets:
     info:
       path: Support/Info.plist
       properties:
-        CFBundleDisplayName: desktop-commander
-        CFBundleName: desktop-commander
+        CFBundleDisplayName: Deskyard
+        CFBundleName: Deskyard
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         CFBundleIconName: AppIcon
@@ -72,8 +72,13 @@ targets:
           Copyright © 2026 Fabrizio Balliano. MIT licensed.
     settings:
       base:
+        # The bundle identifier keeps the old name on purpose. macOS keys the
+        # Accessibility permission and the settings by it, so existing installs
+        # keep both.
         PRODUCT_BUNDLE_IDENTIFIER: com.fabrizioballiano.desktop-commander
-        PRODUCT_NAME: desktop-commander
+        PRODUCT_NAME: Deskyard
+        # The module name keeps the old name on purpose. The tests and the App
+        # Intents refer to it.
         PRODUCT_MODULE_NAME: DesktopCommander
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         COMBINE_HIDPI_IMAGES: YES
@@ -98,7 +103,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.fabrizioballiano.desktop-commander-tests
         PRODUCT_MODULE_NAME: DesktopCommanderTests
         GENERATE_INFOPLIST_FILE: YES
-        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/desktop-commander.app/Contents/MacOS/desktop-commander"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Deskyard.app/Contents/MacOS/Deskyard"
         BUNDLE_LOADER: "$(TEST_HOST)"
 
 schemes:

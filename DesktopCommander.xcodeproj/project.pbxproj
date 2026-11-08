@@ -478,7 +478,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrizioballiano.desktop-commander";
 				PRODUCT_MODULE_NAME = DesktopCommander;
-				PRODUCT_NAME = "desktop-commander";
+				PRODUCT_NAME = Deskyard;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -570,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrizioballiano.desktop-commander";
 				PRODUCT_MODULE_NAME = DesktopCommander;
-				PRODUCT_NAME = "desktop-commander";
+				PRODUCT_NAME = Deskyard;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -589,7 +589,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrizioballiano.desktop-commander-tests";
 				PRODUCT_MODULE_NAME = DesktopCommanderTests;
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/desktop-commander.app/Contents/MacOS/desktop-commander";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deskyard.app/Contents/MacOS/Deskyard";
 			};
 			name = Release;
 		};
@@ -607,7 +607,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fabrizioballiano.desktop-commander-tests";
 				PRODUCT_MODULE_NAME = DesktopCommanderTests;
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/desktop-commander.app/Contents/MacOS/desktop-commander";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Deskyard.app/Contents/MacOS/Deskyard";
 			};
 			name = Debug;
 		};

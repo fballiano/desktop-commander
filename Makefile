@@ -1,4 +1,4 @@
-# desktop-commander — build helpers.
+# Deskyard — build helpers.
 #
 #   make generate   regenerate DesktopCommander.xcodeproj from project.yml (needs xcodegen)
 #   make build      build the Release app into ./build
@@ -20,7 +20,10 @@
 SHELL          := /bin/bash
 PROJECT        := DesktopCommander.xcodeproj
 SCHEME         := DesktopCommander
-APP            := desktop-commander.app
+APP            := Deskyard.app
+# The app had this name up to 1.3.1. It has the same bundle identifier, so
+# install and uninstall remove it too: two copies break the permission.
+OLD_APP        := desktop-commander.app
 BUILD_DIR      := $(CURDIR)/build
 DIST_DIR       := $(CURDIR)/dist
 APP_RELEASE    := $(BUILD_DIR)/Build/Products/Release/$(APP)
@@ -77,19 +80,21 @@ test:
 	@pkill -f '$(BUILD_DIR)/Build/Products/.*/$(APP)/Contents/MacOS/' || true
 
 run: build
-	@pkill -f '/desktop-commander.app/Contents/MacOS/desktop-commander' || true
+	@pkill -f '/$(APP)/Contents/MacOS/' || true
 	@sleep 1
 	@open -n $(APP_RELEASE)
 
 install: build
-	@pkill -f '/desktop-commander.app/Contents/MacOS/desktop-commander' || true
-	@rm -rf /Applications/$(APP)
+	@pkill -f '/$(APP)/Contents/MacOS/' || true
+	@pkill -f '/$(OLD_APP)/Contents/MacOS/' || true
+	@rm -rf /Applications/$(APP) /Applications/$(OLD_APP)
 	@cp -R $(APP_RELEASE) /Applications/$(APP)
 	@echo "Installed /Applications/$(APP)"
 
 uninstall:
-	@pkill -f '/desktop-commander.app/Contents/MacOS/desktop-commander' || true
-	@rm -rf /Applications/$(APP)
+	@pkill -f '/$(APP)/Contents/MacOS/' || true
+	@pkill -f '/$(OLD_APP)/Contents/MacOS/' || true
+	@rm -rf /Applications/$(APP) /Applications/$(OLD_APP)
 	@echo "Removed /Applications/$(APP)"
 
 dmg: build package
@@ -102,12 +107,12 @@ package:
 	@set -euo pipefail; \
 	version=$$($(PLIST_BUDDY) -c "Print CFBundleShortVersionString" "$(APP_RELEASE)/Contents/Info.plist"); \
 	staging="$(DIST_DIR)/dmg"; \
-	image="$(DIST_DIR)/desktop-commander-$$version.dmg"; \
+	image="$(DIST_DIR)/Deskyard-$$version.dmg"; \
 	rm -rf "$$staging" "$$image"; \
 	mkdir -p "$$staging"; \
 	cp -R "$(APP_RELEASE)" "$$staging/"; \
 	ln -s /Applications "$$staging/Applications"; \
-	hdiutil create -volname "desktop-commander $$version" -srcfolder "$$staging" \
+	hdiutil create -volname "Deskyard $$version" -srcfolder "$$staging" \
 		-ov -format UDZO -quiet "$$image"; \
 	rm -rf "$$staging"; \
 	echo "Built $$image"

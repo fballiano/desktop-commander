@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
 
-<dictionary title="desktop-commander">
-    <suite name="desktop-commander Suite" code="DCMD" description="desktop-commander scripts">
+<dictionary title="Deskyard">
+    <suite name="Deskyard Suite" code="DCMD" description="Deskyard scripts">
         <command name="keep awake" code="DCMDkawn" description="Stop the Mac from going to sleep">
             <cocoa class="KeepAwakeOnCommand"/>
         </command>

@@ -94,7 +94,7 @@ final class KeepAwake {
         // A second call must not take a second assertion. It only changes the
         // length, which means the old timer goes and a new one starts.
         if assertion == nil {
-            let reason = String(localized: "desktop-commander keeps this Mac awake")
+            let reason = String(localized: "Deskyard keeps this Mac awake")
 
             guard let identifier = take(reason) else { return }
             assertion = identifier

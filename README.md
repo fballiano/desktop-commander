@@ -1,17 +1,17 @@
 <div align="center">
 <picture>
 <source media="(prefers-color-scheme: dark)" srcset="Docs/icon-dark.png" />
-<img src="Docs/icon-light.png" width="128" alt="desktop-commander" />
+<img src="Docs/icon-light.png" width="128" alt="Deskyard" />
 </picture>
-<h1>desktop-commander</h1>
+<h1>Deskyard</h1>
 <p><strong>Menu bar switches and window management for macOS.</strong></p>
 <p>
-<a href="https://github.com/fballiano/desktop-commander/releases/latest"><img src="https://img.shields.io/github/v/release/fballiano/desktop-commander?style=for-the-badge&color=2F7D3A&labelColor=1B1F23" alt="Latest release" /></a>
-<a href="https://github.com/fballiano/desktop-commander/releases"><img src="https://img.shields.io/github/downloads/fballiano/desktop-commander/total?style=for-the-badge&color=2F7D3A&labelColor=1B1F23" alt="Downloads" /></a>
+<a href="https://github.com/fballiano/deskyard/releases/latest"><img src="https://img.shields.io/github/v/release/fballiano/deskyard?style=for-the-badge&color=2F7D3A&labelColor=1B1F23" alt="Latest release" /></a>
+<a href="https://github.com/fballiano/deskyard/releases"><img src="https://img.shields.io/github/downloads/fballiano/deskyard/total?style=for-the-badge&color=2F7D3A&labelColor=1B1F23" alt="Downloads" /></a>
 <img src="https://img.shields.io/badge/macOS-15%2B-2F7D3A?style=for-the-badge&labelColor=1B1F23&logo=apple&logoColor=white" alt="macOS 15 or later" />
 <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-2F7D3A?style=for-the-badge&labelColor=1B1F23" alt="MIT licence" /></a>
 </p>
-<p><a href="https://github.com/fballiano/desktop-commander/releases/latest"><img src="https://img.shields.io/badge/Download%20for%20macOS-2F7D3A?style=for-the-badge&labelColor=2F7D3A&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTd2MmEyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyIC0ydi0yIi8+PHBhdGggZD0iTTcgMTFsNSA1bDUgLTUiLz48cGF0aCBkPSJNMTIgNGwwIDEyIi8+PC9zdmc+" alt="Download for macOS" height="36" /></a></p>
+<p><a href="https://github.com/fballiano/deskyard/releases/latest"><img src="https://img.shields.io/badge/Download%20for%20macOS-2F7D3A?style=for-the-badge&labelColor=2F7D3A&logo=data:image/svg%2Bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTQgMTd2MmEyIDIgMCAwIDAgMiAyaDEyYTIgMiAwIDAgMCAyIC0ydi0yIi8+PHBhdGggZD0iTTcgMTFsNSA1bDUgLTUiLz48cGF0aCBkPSJNMTIgNGwwIDEyIi8+PC9zdmc+" alt="Download for macOS" height="36" /></a></p>
 </div>
 
 <table align=center><tr><td align=center>
@@ -42,18 +42,17 @@
 With [Homebrew](https://brew.sh):
 
 ```bash
-brew tap fballiano/desktop-commander https://github.com/fballiano/desktop-commander
-brew trust --cask fballiano/desktop-commander/desktop-commander
-brew install --cask desktop-commander
+brew tap fballiano/tap
+brew trust --tap fballiano/tap
+brew install --cask deskyard
 ```
 
-The URL is part of the first command, because this repository is the tap itself.
 Homebrew 6 refuses to load a cask from a tap outside `Homebrew/*` until you
 trust it, so the second command is also necessary.
 
 Or download the DMG from the
-[latest release](https://github.com/fballiano/desktop-commander/releases/latest).
-Open it and drag **desktop-commander** into **Applications**.
+[latest release](https://github.com/fballiano/deskyard/releases/latest).
+Open it and drag **Deskyard** into **Applications**.
 
 The application is signed with an Apple Developer ID and notarized by Apple, so
 it opens like any other application.
@@ -66,6 +65,26 @@ The application has no dock icon. It appears in the menu bar.
 | Hardware | Apple silicon and Intel (universal binary) |
 | Permissions | Accessibility, for the window commands and the keyboard lock only. Read the next section. |
 | Notifications | None. The application posts no banner, so it never asks. |
+
+### From desktop-commander
+
+Up to 1.3.1 the application had the name desktop-commander, and its cask was in
+the tap `fballiano/desktop-commander`. If you installed it with Homebrew, move
+to the new cask. First run the `brew tap` and `brew trust` commands above. Then:
+
+```bash
+brew uninstall --cask fballiano/desktop-commander/desktop-commander && brew install --cask fballiano/tap/deskyard && brew untap fballiano/desktop-commander
+```
+
+Your settings and the Accessibility permission stay. The application keeps the
+same bundle identifier and the same settings file.
+
+If you installed the DMG, quit desktop-commander, then delete
+`/Applications/desktop-commander.app` and install Deskyard. Keep only one copy:
+two copies break the permission. Read the next section.
+
+An AppleScript script that names the application must use the new name:
+`tell application "Deskyard"`.
 
 ## The Accessibility permission
 
@@ -81,7 +100,7 @@ command, so if you only want the switches you never see a permission sheet.
 > From 1.3.1 it is signed with an Apple Developer ID, and the permission stays
 > through every update. After the update from 1.3.0 or earlier, open
 > **System Settings → Privacy & Security → Accessibility**, remove
-> **desktop-commander** with the minus button, and add it again.
+> **Deskyard** with the minus button, and add it again.
 
 If a window command keeps asking for a permission the list already shows as
 granted, two copies of the application are installed. Every copy carries the same
@@ -89,9 +108,9 @@ bundle identifier, so macOS shows one row, and the row belongs to one of them.
 Reset it and start one copy:
 
 ```bash
-pkill -f desktop-commander
+pkill -f Deskyard
 tccutil reset Accessibility com.fabrizioballiano.desktop-commander
-open -n /Applications/desktop-commander.app
+open -n /Applications/Deskyard.app
 ```
 
 Then use a window command once and grant the permission again.
@@ -176,7 +195,7 @@ General, then Language & Region, then Applications.
 ## Automation
 
 ```applescript
-tell application "desktop-commander"
+tell application "Deskyard"
     keep awake
     allow sleep
     hide desktop icons
@@ -200,10 +219,10 @@ end tell
 From a terminal:
 
 ```bash
-osascript -e 'tell application "desktop-commander" to arrange window "rightHalf"'
+osascript -e 'tell application "Deskyard" to arrange window "rightHalf"'
 ```
 
-The Shortcuts app lists the same commands under **desktop-commander**, and there
+The Shortcuts app lists the same commands under **Deskyard**, and there
 the place is a list you pick from instead of a piece of text. Spotlight runs them
 too.
 
@@ -213,6 +232,9 @@ too.
 | --- | --- |
 | Settings | `~/Library/Preferences/com.fabrizioballiano.desktop-commander.plist` |
 | The desktop switches | Not here. They live in `com.apple.finder` and `com.apple.WindowManager`, which are the settings of macOS itself. |
+
+The settings file keeps the old name of the application on purpose, so an update
+from desktop-commander keeps your settings.
 
 The application keeps no copy of a setting of the system, so a change you make in
 System Settings or in Finder is the same change, and neither side falls out of
@@ -237,7 +259,7 @@ make test        # run the unit tests
 make run         # build, then launch
 make dmg         # build the Release app and pack it into ./dist/*.dmg
 make generate    # rebuild DesktopCommander.xcodeproj from project.yml (needs xcodegen)
-make uninstall   # remove /Applications/desktop-commander.app
+make uninstall   # remove /Applications/Deskyard.app
 ```
 
 To work in Xcode, open `DesktopCommander.xcodeproj` and press Run. The project

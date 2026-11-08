@@ -42,7 +42,7 @@ enum Accessibility {
         guard !RuntimeEnvironment.isRunningTests else { return }
 
         let alert = NSAlert()
-        alert.messageText = String(localized: "desktop-commander needs the Accessibility permission")
+        alert.messageText = String(localized: "Deskyard needs the Accessibility permission")
         alert.informativeText = String(localized: "accessibility.alert.message")
         alert.alertStyle = .warning
         alert.addButton(withTitle: String(localized: "Open Settings…"))
