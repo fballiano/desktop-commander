@@ -224,7 +224,7 @@ jobs:
 
       # This step stores the version on the default branch, where a local
       # build reads it. It runs only after the release is published. The cask
-      # in this repository is frozen: the tap holds the new cask.
+      # is in the tap.
       - name: Update the stored version
         if: env.PUBLISH == 'true'
         env:

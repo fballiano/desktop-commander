@@ -218,10 +218,8 @@ pushes the change to the tap. It uses the deploy key in the secret
 `TAP_DEPLOY_KEY`, which can write to the tap only. Do not edit the two lines by
 hand.
 
-`Casks/desktop-commander.rb` in this repository is the cask of the old tap
-`fballiano/desktop-commander`. It is frozen at 1.3.1 and deprecated, so its
-users learn about the move. No release changes it. Do not delete it: the users
-of the old tap still read it.
+Until 1.3.1, this repository was its own tap, `fballiano/desktop-commander`.
+It has no cask now. A user of the old tap moves with the commands in the README.
 
 A local tap clone made before a release still holds the old checksum, so
 `brew update` comes before `brew upgrade`.
